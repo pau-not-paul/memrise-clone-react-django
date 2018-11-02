@@ -1,0 +1,67 @@
+.Content {
+	box-sizing: border-box;
+	padding-top: 62px;
+	width: 100%;
+	height: 100%;
+	background-image: url('../../assets/images/landscape.svg');
+	background-position: 0% 100%;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	background-color: #5f3b96;
+}
+
+.WhiteBox {
+	margin: 50px auto;
+	width: 380px;
+	background-color: white;
+	border-radius: 10px;
+	padding: 20px;
+}
+
+.LoginTitle {
+	font-weight: bold;
+	font-size: 1.5em;
+	color: #3E3E3E;
+	margin-bottom: 20px;
+}
+
+.Label {
+	font-weight: bold;
+	font-size: 0.9em;
+	color: #3E3E3E;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.Input {
+	width: 100%;
+	font-size: 16px;
+	height: 44px;
+	border-radius: 6px;
+	border: 1px solid #e4e4e4;
+	box-sizing: border-box;
+	padding: 11px 18px;
+	color: #3E3E3E;
+}
+
+.LoginButton {
+	margin: 15px 0;	
+	background-color: green;
+	color: #fff;
+	border: 1px solid #699f30;
+	background-color: #83ca38;
+	height: 47px;
+	border-radius: 6px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	cursor: pointer;
+	user-select: none; /* Standard */
+}
+
+.ErrorMessage {
+	color: red;
+	font-size: 0.8em;
+}
+

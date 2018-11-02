@@ -1,0 +1,12 @@
+.Body {
+	height: 100%;
+	box-sizing: border-box;
+	padding-top: 62px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	text-align: center;
+	font-size: 1.8em;
+	font-weight: 600;
+}

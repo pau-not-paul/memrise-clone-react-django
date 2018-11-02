@@ -1,0 +1,194 @@
+.CourseCard {
+	margin-bottom: 20px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	border: 1px solid #e4e4e4;
+	box-shadow: 0px 5px 3px -5px rgba(0,0,0,0.3);
+}
+
+.CardTop {
+	box-sizing: border-box;
+	border-radius: 5px;
+	padding: 16px 20px 10px;
+	background-color: white;
+	min-height: 130px;
+	display: flex;
+}
+
+.CardBottom {
+	box-sizing: border-box;
+	height: 62px;
+	padding: 8px 20px;
+	box-shadow: inset 0px 1px 3px 0px rgba(0,0,0,0.1);
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.CourseTitle {
+	color: #333;
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 1.3em;
+}
+
+.CourseTitle:hover {
+	color: #0088cc;
+}
+
+.LoadingBox {
+	height: 200px;
+	background-color: #ccc;
+	animation-name: shine; 
+	animation-duration: 1s; 
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	animation-direction: alternate;
+}
+
+@keyframes shine {
+	from {transition:none;}
+	to {background-color:#dedede; transition: all 0.3s ease-out;}
+}
+
+.ImgWrapper {
+	margin-right: 20px;
+}
+
+.Image {
+	box-sizing: border-box;
+	height: 100px;
+	width: 100px;
+	border-radius: 5px;
+}
+
+.CardMainContainer {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.WordsLearned {
+	width: 100%;
+	font-size: 0.9em;
+	font-weight: 600;
+	color: #333;
+	text-align: right;
+}
+
+.ProgressBar {
+	margin-top: 5px;
+	border-radius: 4px;
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.06) inset;
+	background-color: #f7f7f7;
+	height: 10px;
+	margin-bottom: 4px;
+}
+
+.Progress {
+	height: 100%;
+	border-radius: 4px;
+	background-color: #ffda3e;
+}
+
+.CourseCompleted {
+	margin-top: 5px;
+	color: #83c53d;
+	font-weight: 600;
+	font-size: 0.9em;
+}
+
+.MoreButton {
+	width: 160px;
+	height: 46px;
+	display: flex;
+	flex-direction: row;
+	background-color: white;
+	color: #3e3e3e;
+	box-shadow: 0 1px 5px 0 rgba(0,0,0,0.15);
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.MoreButton:hover {
+	box-shadow: 0 2px 5px 0 rgba(0,0,0,0.25);
+}
+
+.Disabled {
+	cursor: default !important;
+	background-color: white;
+	filter: grayscale(100%) contrast(0.7) opacity(0.4);
+}
+
+.Disabled:hover {
+	box-shadow: 0 1px 5px 0 rgba(0,0,0,0.15);
+}
+
+.MoreButtonIcon {
+	height: 32px;
+	width: 32px;
+	margin: 7px;
+	display: inline-block;
+	vertical-align: middle;
+	float: left;
+	background-image: url('../../../assets/images/scb-mode-icon.svg');
+	background-position: center;
+	background-size: 100% 100%;
+	background-repeat: no-repeat
+}
+
+.MoreButtonText {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-left: 7px;
+	font-size: 0.9em;
+	font-weight: 600;
+}
+
+.NextUpButton {
+	display: flex;
+	flex-direction: row;
+	margin-left: 10px;
+	min-width: 196px;
+	border-radius: 4px;
+	box-shadow: 0 1px 5px 0 rgba(0,0,0,0.15);
+	padding: 4px;
+	background-color: #24b840;
+	color: white;
+	cursor: pointer;
+}
+
+.LearnIcon {
+	background-image: url('../../../assets/images/scb-icon-learn.svg');
+	background-position: 0% 100%;
+	background-size: 100% auto;
+	background-repeat: no-repeat;
+	width: 38px;
+	height: 38px;
+}
+
+.NextUpText {
+	font-size: 0.7em;
+}
+
+.NextUpArrow {
+	margin: 12px 0 0 0;
+	width: 12px;
+	height: 12px;
+	flex-grow: 1;
+	background-image: url('../../../assets/images/right-arrow.svg');
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+}
+
+.NextUpLabel {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	font-size: 0.9em;
+	font-weight: 600;
+	margin-bottom: 2px;
+}
+
+

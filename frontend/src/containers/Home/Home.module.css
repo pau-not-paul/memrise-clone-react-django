@@ -1,0 +1,50 @@
+.PageHead {
+	margin-top: 62px;
+	background-color: white;
+	height: 74px;
+	display: flex;
+	justify-content: center;
+	border-bottom: solid 1px #e6e6e6;
+}
+
+.PageHeadRow {
+	height: 100%;
+	width: 960px;
+	max-width: 960px;
+	margin: 0 30px;
+}
+
+.Title {
+	font-size: 25px;
+	font-weight: bold;
+	color: #3E3E3E;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.Content {
+	box-sizing: border-box;
+	padding: 26px 0;
+	width: 100%;
+	background: transparent;
+}
+
+body {
+	background-color: #f5f5f5;
+}
+
+.ContainerMain {
+	width: 960px;
+	height: 100%;
+	margin: auto;
+	display: flex;
+	flex-direction: row;
+}
+
+.RightColumn {
+	height: 100%;
+	width: 730px;
+	margin-left: 35px;
+}
