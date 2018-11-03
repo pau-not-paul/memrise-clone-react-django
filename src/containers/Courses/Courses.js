@@ -11,14 +11,19 @@ class Courses extends Component {
 		coursesHTML: null,
 	}
 
-	componentWillMount () {
+	componentWillMount() {
 		this.loadCourses();
 	}
 
 	loadCourses = () => {
 		const coursesHTML = [];
+		console.log(process.env.NODE_ENV);
 
-		axios.get('http://127.0.0.1:8000/courses/')
+		const url = (process.env.NODE_ENV === 'development')
+			? 'http://localhost:8000/'
+			: 'https://memclone-react-django.herokuapp.com/';
+
+		axios.get(url + 'courses/')
 			.then(res => {
 				for (let course of res.data) {
 					let justCreatedClass = '';
@@ -27,9 +32,9 @@ class Courses extends Component {
 					if (courseId === String(course.id)) {
 						justCreatedClass = styles.JustCreated;
 					}
-					 
+
 					coursesHTML.push(
-						<Link key={course.id} to={'/course/'+course.id} className={styles.CourseCard+' '+justCreatedClass}>
+						<Link key={course.id} to={'/course/' + course.id} className={styles.CourseCard + ' ' + justCreatedClass}>
 							{course.name}
 						</Link>
 					);
@@ -44,7 +49,7 @@ class Courses extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<Header url={this.props.match.url}/>
+				<Header url={this.props.match.url} />
 				<div className={styles.PageHead}>
 					<div className={styles.PageHeadRow}>
 						<div className={styles.Title}>
@@ -57,7 +62,7 @@ class Courses extends Component {
 					<div className={styles.ContainerMain}>
 						{/*<LeftColumn/>*/}
 						<div className={styles.RightColumn}>
-							{this.state.coursesHTML}							
+							{this.state.coursesHTML}
 						</div>
 					</div>
 				</div>

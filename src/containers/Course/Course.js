@@ -5,14 +5,14 @@ import Header from '../../components/Header/Header';
 import Spinner from '../../components/Spinner/Spinner';
 
 class Course extends Component {
-	
+
 	state = {
 		courseId: null,
 		title: null,
 		description: null,
 	}
 
-	componentWillMount () {
+	componentWillMount() {
 		// setTimeout(this.loadCourse, 1000);
 		this.loadCourse();
 	}
@@ -20,7 +20,11 @@ class Course extends Component {
 	loadCourse = () => {
 		const courseId = this.props.match.params.courseId;
 
-		axios.get('http://127.0.0.1:8000/courses/'+courseId)
+		const url = (process.env.NODE_ENV === 'development')
+			? 'http://localhost:8000/'
+			: 'https://memclone-react-django.herokuapp.com/';
+
+		axios.get(url + 'courses/' + courseId)
 			.then(res => {
 				console.log('hola');
 				console.log(res.data);
@@ -43,7 +47,7 @@ class Course extends Component {
 	render() {
 		let courseDetails = (
 			<div className={styles.SpinnerWrapper}>
-				<Spinner/>
+				<Spinner />
 			</div>
 		);
 
@@ -56,7 +60,7 @@ class Course extends Component {
 					<div className={styles.Description}>
 						{this.state.description}
 					</div>
-					<div className={styles.StartButton+' '+styles.Disabled} to='/course/create'>Start learning</div>
+					<div className={styles.StartButton + ' ' + styles.Disabled} to='/course/create'>Start learning</div>
 				</div>
 			);
 		}
@@ -64,7 +68,7 @@ class Course extends Component {
 
 		return (
 			<React.Fragment>
-				<Header url={this.props.match.url}/>
+				<Header url={this.props.match.url} />
 				<div className={styles.PageHead}>
 					<div className={styles.PageHeadRow}>
 						{courseDetails}

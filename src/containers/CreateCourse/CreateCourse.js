@@ -18,59 +18,61 @@ class CreateCourse extends Component {
 		if (this.state.name === '') {
 			correct = false;
 			this.setState({
-				nameInputClasses: styles.Input+' '+styles.Error,
+				nameInputClasses: styles.Input + ' ' + styles.Error,
 			});
 		}
 		if (this.state.description === '') {
 			correct = false;
 			this.setState({
-				descriptionInputClasses: styles.InputDescription+' '+styles.Error,
+				descriptionInputClasses: styles.InputDescription + ' ' + styles.Error,
 			});
 		}
 
 		if (correct) {
-			// TODO: Create course
-			axios.post('http://127.0.0.1:8000/courses/create/', {
+			const url = (process.env.NODE_ENV === 'development')
+				? 'http://localhost:8000/'
+				: 'https://memclone-react-django.herokuapp.com/';
+			axios.post(url + 'courses/create/', {
 				name: this.state.name,
 				description: this.state.description,
 			})
-			.then(res => {
-				this.goToCourses(res.data.id);
-			});
+				.then(res => {
+					this.goToCourses(res.data.id);
+				});
 			// .catch(err => console.error(err));
 		}
 	}
 
 	goToCourses = (id) => {
-		this.props.history.push('/courses/'+id);
+		this.props.history.push('/courses/' + id);
 	}
-	
+
 	nameChange = (event) => {
-		if (this.state.nameInputClasses === styles.Input+' '+styles.Error) {
+		if (this.state.nameInputClasses === styles.Input + ' ' + styles.Error) {
 			this.setState({
 				name: event.target.value,
 				nameInputClasses: styles.Input,
 			});
 		} else {
-			this.setState({name: event.target.value});			
+			this.setState({ name: event.target.value });
 		}
 	}
 
 	descriptionChange = (event) => {
-		if (this.state.descriptionInputClasses === styles.InputDescription+' '+styles.Error) {
+		if (this.state.descriptionInputClasses === styles.InputDescription + ' ' + styles.Error) {
 			this.setState({
 				description: event.target.value,
-				descriptionInputClasses: styles.InputDescription,				
+				descriptionInputClasses: styles.InputDescription,
 			});
 		} else {
-			this.setState({description: event.target.value});
+			this.setState({ description: event.target.value });
 		}
 	}
 
 	render() {
 		return (
 			<React.Fragment>
-				<Header url={this.props.match.url}/>
+				<Header url={this.props.match.url} />
 				<div className={styles.PageHead}>
 					<div className={styles.PageHeadRow}>
 						<div className={styles.Title}>
@@ -80,9 +82,9 @@ class CreateCourse extends Component {
 				</div>
 				<div className={styles.WhiteBox}>
 					<div className={styles.Label}>Name:</div>
-					<input onChange={this.nameChange} maxLength='100' className={this.state.nameInputClasses}/>
+					<input onChange={this.nameChange} maxLength='100' className={this.state.nameInputClasses} />
 					<div className={styles.Label}>Description:</div>
-					<textarea onChange={this.descriptionChange} rows='2' className={this.state.descriptionInputClasses} onKeyDown={this.onKeyDown}/>
+					<textarea onChange={this.descriptionChange} rows='2' className={this.state.descriptionInputClasses} onKeyDown={this.onKeyDown} />
 					<div onClick={this.createCourse} className={styles.LoginButton}>Create course</div>
 				</div>
 			</React.Fragment>

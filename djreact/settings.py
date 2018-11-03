@@ -25,7 +25,11 @@ SECRET_KEY = 'x#m1&d)3*z*)2rpn%3u1y^5lx_g9dl*3#)kd5+2r##bb10q+gv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['memclone-react-django.herokuapp.com']
+ALLOWED_HOSTS = [
+    'memclone-react-django.herokuapp.com',
+    '127.0.0.1',
+    'localhost'
+]
 
 
 # Application definition
