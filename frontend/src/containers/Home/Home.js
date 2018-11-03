@@ -27,7 +27,7 @@ class Home extends Component {
 
 		for (let level of [1,2,3]) {
 			const wordsLearned = 0;
-			const totalWords = 10*level;
+			const totalWords = 0;
 
 			const course = {
 				id: level+'',

@@ -11,7 +11,8 @@ class CourseCard extends Component {
 	    	);
 	 	} else {
 	 		const img = 'https://static.memrise.com/uploads/course_photos/16054981000161215151931.jpg';
-	 		const progress = 100*Number(this.props.course.wordsLearned)/Number(this.props.course.totalWords);
+	 		// const progress = 100*Number(this.props.course.wordsLearned)/Number(this.props.course.totalWords);
+	 		const progress = 0;
 	 		const progressWidth = {
 	 			width: progress+'%',
 	 		};
