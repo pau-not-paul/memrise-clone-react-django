@@ -18,10 +18,13 @@ class Courses extends Component {
 	loadCourses = () => {
 		const coursesHTML = [];
 
-		const url = (window.location.href.indexOf('heroku') !== -1)
-			? 'https://memclone-react-django.herokuapp.com/'
-			: 'http://localhost:8000/';
+		// const url = (window.location.href.indexOf('heroku') !== -1)
+		// 	? 'https://memclone-react-django.herokuapp.com/'
+		// 	: 'http://localhost:8000/';
 
+		const url = 'https://memclone-react-django.herokuapp.com/';
+
+		console.log('loadCourses:');
 		console.log('window.location.href: ' + window.location.href);
 		console.log('Courses.url: ' + url);
 
