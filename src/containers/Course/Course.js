@@ -20,7 +20,7 @@ class Course extends Component {
 	loadCourse = () => {
 		const courseId = this.props.match.params.courseId;
 
-		const url = (process.env.NODE_ENV === 'development')
+		const url = (window.location.href.indexOf('heroku') === -1)
 			? 'http://localhost:8000/'
 			: 'https://memclone-react-django.herokuapp.com/';
 

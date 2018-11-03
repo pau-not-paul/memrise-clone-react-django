@@ -17,9 +17,8 @@ class Courses extends Component {
 
 	loadCourses = () => {
 		const coursesHTML = [];
-		console.log(process.env.NODE_ENV);
 
-		const url = (process.env.NODE_ENV === 'development')
+		const url = (window.location.href.indexOf('heroku') === -1)
 			? 'http://localhost:8000/'
 			: 'https://memclone-react-django.herokuapp.com/';
 
