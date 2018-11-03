@@ -23,3 +23,64 @@
 	flex-direction: column;
 	justify-content: center;
 }
+
+.WhiteBox {
+	margin: 50px auto;
+	width: 380px;
+	max-width: 80%;
+	background-color: white;
+	border-radius: 10px;
+	padding: 20px;
+	border: 1px solid rgba(0,0,0,0.2);
+	box-shadow: 0 1px 1px 1px rgba(0,0,0,0.1);
+}
+
+.Label {
+	font-weight: bold;
+	font-size: 0.9em;
+	color: #3E3E3E;
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.Input {
+	width: 100%;
+	font-size: 16px;
+	height: 44px;
+	border-radius: 6px;
+	border: 1px solid #e4e4e4;
+	box-sizing: border-box;
+	padding: 11px 18px;
+	color: #3E3E3E;
+}
+
+.InputDescription {
+	width: 100%;
+	font-size: 16px;
+	height: 88px;
+	border-radius: 6px;
+	border: 1px solid #e4e4e4;
+	box-sizing: border-box;
+	padding: 11px 18px;
+	color: #3E3E3E;
+}
+
+.LoginButton {
+	margin: 15px 0;	
+	background-color: green;
+	color: #fff;
+	border: 1px solid #699f30;
+	background-color: #83ca38;
+	height: 47px;
+	border-radius: 6px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	cursor: pointer;
+	user-select: none;
+}
+
+.Error {
+	border: 1px solid rgba(255,0,0,0.7);	
+}

@@ -39,7 +39,7 @@ class Login extends Component {
 						<div className={styles.Label}>Username or email:</div>
 						<input className={styles.Input}/>
 						<div className={styles.Label}>Password:</div>
-						<input className={styles.Input} onKeyDown={this.onKeyDown}/>
+						<input type='password' className={styles.Input} onKeyDown={this.onKeyDown}/>
 						<div onClick={this.loginClick} className={styles.LoginButton}>Login</div>
 					</div>
 				</div>

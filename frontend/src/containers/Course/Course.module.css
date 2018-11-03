@@ -58,6 +58,7 @@
     cursor: pointer;
     box-shadow: -1px 2px 4px 0px rgba(0,0,0,0.16), inset 0px -2px 7px 0px rgba(0,0,0,0.1), inset 0px 2px 0px 0px rgba(255,255,255,0.3);
     font-size: 0.9em;
+	user-select: none;
 }
 
 /* .StartButton:hover {
@@ -71,8 +72,4 @@ body {
 .Disabled {
 	cursor: default !important;
 	filter: grayscale(100%) opacity(0.6);
-}
-
-.Disabled:hover {
-	/* box-shadow: 0 1px 5px 0 rgba(0,0,0,0.15); */
 }
