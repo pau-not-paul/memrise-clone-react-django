@@ -18,10 +18,11 @@ class Courses extends Component {
 	loadCourses = () => {
 		const coursesHTML = [];
 
-		const url = (window.location.href.indexOf('heroku') === -1)
-			? 'http://localhost:8000/'
-			: 'https://memclone-react-django.herokuapp.com/';
+		const url = (window.location.href.indexOf('heroku') !== -1)
+			? 'https://memclone-react-django.herokuapp.com/'
+			: 'http://localhost:8000/';
 
+		console.log('window.location.href: ' + window.location.href);
 		console.log('Courses.url: ' + url);
 
 		axios.get(url + 'courses/')

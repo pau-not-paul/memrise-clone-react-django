@@ -20,9 +20,9 @@ class Course extends Component {
 	loadCourse = () => {
 		const courseId = this.props.match.params.courseId;
 
-		const url = (window.location.href.indexOf('heroku') === -1)
-			? 'http://localhost:8000/'
-			: 'https://memclone-react-django.herokuapp.com/';
+		const url = (window.location.href.indexOf('heroku') !== -1)
+			? 'https://memclone-react-django.herokuapp.com/'
+			: 'http://localhost:8000/';
 
 		axios.get(url + 'courses/' + courseId)
 			.then(res => {
