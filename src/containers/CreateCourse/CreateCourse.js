@@ -32,6 +32,7 @@ class CreateCourse extends Component {
 			const url = (window.location.href.indexOf('heroku') === -1)
 				? 'http://localhost:8000/'
 				: 'https://memclone-react-django.herokuapp.com/';
+
 			axios.post(url + 'courses/create/', {
 				name: this.state.name,
 				description: this.state.description,

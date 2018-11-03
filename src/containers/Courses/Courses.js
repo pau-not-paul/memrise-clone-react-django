@@ -22,6 +22,8 @@ class Courses extends Component {
 			? 'http://localhost:8000/'
 			: 'https://memclone-react-django.herokuapp.com/';
 
+		console.log('Courses.url: ' + url);
+
 		axios.get(url + 'courses/')
 			.then(res => {
 				for (let course of res.data) {

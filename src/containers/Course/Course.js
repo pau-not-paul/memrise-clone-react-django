@@ -26,8 +26,6 @@ class Course extends Component {
 
 		axios.get(url + 'courses/' + courseId)
 			.then(res => {
-				console.log('hola');
-				console.log(res.data);
 				const course = res.data;
 
 				this.setState({
