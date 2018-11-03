@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 import styles from './Home.module.css';
 import Header from '../../components/Header/Header';
@@ -26,11 +26,11 @@ class Home extends Component {
 		const coursesHTML = [];
 
 		for (let level of [1,2,3]) {
-			const wordsLearned = 10;
+			const wordsLearned = 0;
 			const totalWords = 10*level;
 
 			const course = {
-				id: 'german-'+level,
+				id: level+'',
 				name: 'German '+level,
 				wordsLearned: wordsLearned, 
 				totalWords: totalWords,
@@ -47,13 +47,12 @@ class Home extends Component {
 	}
 
 	componentDidMount () {
-		console.log('componentDidMount');
 		document.title = 'Dashboard - Memrise';
-		axios.get('http://127.0.0.1:8000/courses/')
-			.then(res => {
-				console.log('hola');
-				console.log(res.data);
-			})
+		// axios.get('http://127.0.0.1:8000/courses/')
+		// 	.then(res => {
+		// 		console.log('hola');
+		// 		console.log(res.data);
+		// 	})
 	}
 
 	render() {    

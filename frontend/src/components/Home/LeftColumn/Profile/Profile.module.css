@@ -1,10 +1,11 @@
 .Profile {
 	border-radius: 5px;
+	box-shadow: rgba(0,0,0,0.08) 0 1px 2px;
+    border: 1px solid #e4e4e4;
 }
 
 .ProfileHeader {
 	border-radius: 5px 5px 0 0;
-	background-image: -webkit-gradient(linear, left bottom, left top, from(#4f2f82), to(#7b609c));
 	background-image: linear-gradient(to top, #4f2f82, #7b609c);
 	background-image: url('../../../../assets/images/as_concentric_circles.svg');
 	background-position: 50% 35px;
@@ -48,4 +49,37 @@
 	width: 100%;
 	text-align: center;
 	font-size: 0.9em;
+}
+
+.ProfileStats {
+	background-color: white;
+	padding: 15px 5px;
+	display: flex;
+	flex-direction: row;
+}
+
+.StatsWrapper {
+	flex: 50%;
+	text-align: center;
+}
+
+.StatsSeparator {
+	width: 1px;
+	height: 35px;
+	background: rgba(0,0,0,0.15);
+	margin: 0 5px;
+}
+
+.StatsNumber {
+	font-weight: bold;
+    font-size: 18px;
+    color: #1fa3e8;
+    line-height: 1.11;
+}
+
+.StatsLabel {
+	margin-top: 2px;
+	font-size: 12px;
+    line-height: 1.67;
+    color: #3E3E3E;
 }

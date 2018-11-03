@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import styles from './CreateCourse.module.css';
 import Header from '../../components/Header/Header';
 
@@ -29,7 +30,19 @@ class CreateCourse extends Component {
 
 		if (correct) {
 			// TODO: Create course
+			axios.post('http://127.0.0.1:8000/courses/create/', {
+				name: this.state.name,
+				description: this.state.description,
+			})
+			.then(res => {
+				this.goToCourses(res.data.id);
+			});
+			// .catch(err => console.error(err));
 		}
+	}
+
+	goToCourses = (id) => {
+		this.props.history.push('/courses/'+id);
 	}
 	
 	nameChange = (event) => {

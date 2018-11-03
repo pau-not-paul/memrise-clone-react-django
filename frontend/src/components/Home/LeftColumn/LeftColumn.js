@@ -7,8 +7,6 @@ class LeftColumn extends Component {
  		return (
 			<div className={styles.LeftColumn}>
 				<Profile/>
-				<p>...</p>
-				<p>...</p>
        		</div>
     	);
   	}

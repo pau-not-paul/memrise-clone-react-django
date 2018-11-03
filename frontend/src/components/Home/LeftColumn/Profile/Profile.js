@@ -6,10 +6,21 @@ class Profile extends Component {
  		return (
 			<div className={styles.Profile}>
 				<div className={styles.ProfileHeader}>
-					<div className={styles.UserName}>UserName</div>
+					<div className={styles.UserName}>NewUser</div>
 					<div className={styles.Level}>LEVEL 1</div>
 					<img className={styles.ProfileImage} alt=""/>
        			</div>
+				<div className={styles.ProfileStats}>
+					<div className={styles.StatsWrapper}>
+						<div className={styles.StatsNumber}>0</div>
+						<div className={styles.StatsLabel}>words learned</div>
+					</div>
+					<div className={styles.StatsSeparator}></div>
+					<div className={styles.StatsWrapper}>
+						<div className={styles.StatsNumber}>0</div>
+						<div className={styles.StatsLabel}>points</div>
+					</div>
+				</div>
        		</div>
     	);
   	}

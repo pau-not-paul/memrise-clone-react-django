@@ -16,6 +16,7 @@ class App extends Component {
         		<Route path='/login' exact component= { Login } />
         		<Route path='/course/create' exact component= { CreateCourse } />
         		<Route path='/course/:courseId' exact component= { Course } />
+        		<Route path='/courses/:courseId' exact component= { Courses } />
         		<Route path='/courses' exact component= { Courses } />
         		<Route path='/home' exact component= { Home } />
         		<Redirect path='/' exact to='/home' />

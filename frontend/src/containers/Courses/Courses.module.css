@@ -100,3 +100,12 @@ body {
 .CourseCard:hover {
     box-shadow: rgba(0,0,0,0.3) 0 1px 2px;
 }
+
+.JustCreated {
+    animation: changebackground 2s linear infinite;
+    background-color: rgba(255,200,200,0.5);
+}
+
+@keyframes changebackground {
+    50% {background-color: rgba(255,200,200,0.8);}
+}
