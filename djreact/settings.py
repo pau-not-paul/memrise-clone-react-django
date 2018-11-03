@@ -25,7 +25,7 @@ SECRET_KEY = 'x#m1&d)3*z*)2rpn%3u1y^5lx_g9dl*3#)kd5+2r##bb10q+gv'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['memclone-react-django.herokuapp.com']
 
 
 # Application definition
@@ -124,6 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 REST_FRAMEWORK = {

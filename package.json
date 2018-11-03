@@ -23,5 +23,9 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "engines": {
+    "node": "8.11.3",
+    "npm": "5.6.0"
+  }
 }
