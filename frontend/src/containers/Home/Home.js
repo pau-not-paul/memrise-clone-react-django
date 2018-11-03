@@ -10,22 +10,16 @@ class Home extends Component {
 
 	state = {
 		loading: true,
-		coursesHTML: null,
-	}
-
-	componentWillMount () {
-		setTimeout(this.loadCourses, 100);
-
-		const coursesHTML = (
+		coursesHTML: (
 			<React.Fragment>
 				<CourseCard loading/>
 				<CourseCard loading/>
 			</React.Fragment>
-		);
+		),
+	}
 
-		this.setState({
-			coursesHTML: coursesHTML
-		});
+	componentWillMount () {
+		setTimeout(this.loadCourses, 100);
 	}
 
 	loadCourses = () => {
@@ -55,7 +49,7 @@ class Home extends Component {
 	componentDidMount () {
 		console.log('componentDidMount');
 		document.title = 'Dashboard - Memrise';
-		axios.get('http://127.0.0.1:8000/api/')
+		axios.get('http://127.0.0.1:8000/courses/')
 			.then(res => {
 				console.log('hola');
 				console.log(res.data);

@@ -58,7 +58,7 @@
 	flex-direction: column;
 	justify-content: center;
 	cursor: pointer;
-	user-select: none; /* Standard */
+	user-select: none;
 }
 
 .ErrorMessage {

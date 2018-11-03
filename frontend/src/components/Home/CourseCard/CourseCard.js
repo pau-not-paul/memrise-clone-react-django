@@ -25,7 +25,11 @@ class CourseCard extends Component {
 	 				</div>
 	 			);
 				nextUpButtonClasses = styles.NextUpButton+' '+styles.Disabled;
-	 		}
+			 }
+			 
+			 // TODO TEMPORARY
+			 nextUpButtonClasses = styles.NextUpButton+' '+styles.Disabled;
+			 // TODO TEMPORARY
 
 	 		return (
 	 			<div className={styles.CourseCard}>

@@ -1,0 +1,78 @@
+.PageHead {
+    min-height: 100px;
+    background-color: #825fb6;
+    background-image: linear-gradient(to bottom, #825fb6, #5f3b96);
+    display: flex;
+    flex-direction: row;
+	justify-content: center;
+    border-bottom: solid 1px #e6e6e6;
+    color: white;
+    padding: 20px;
+    padding-top: 82px;
+}
+
+.PageHeadRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+	height: 100px;
+	min-height: 100%;
+	width: 960px;
+    max-width: 960px;
+    margin: 0 30px;
+}
+
+.CourseDetails {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.SpinnerWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Title {
+    font-weight: 600;
+    font-size: 1.6em;
+    width: 100%;
+}
+
+.Description {
+    margin: 10px 0;
+}
+
+.StartButton {
+    max-width: 100px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #08b60b;
+    border: 1px solid #069108;
+    color: #fff;
+    padding: 7px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: -1px 2px 4px 0px rgba(0,0,0,0.16), inset 0px -2px 7px 0px rgba(0,0,0,0.1), inset 0px 2px 0px 0px rgba(255,255,255,0.3);
+    font-size: 0.9em;
+}
+
+/* .StartButton:hover {
+    background-color: #10c010;
+} */
+
+body {
+	background-color: #f5f5f5;
+}
+
+.Disabled {
+	cursor: default !important;
+	filter: grayscale(100%) opacity(0.6);
+}
+
+.Disabled:hover {
+	/* box-shadow: 0 1px 5px 0 rgba(0,0,0,0.15); */
+}

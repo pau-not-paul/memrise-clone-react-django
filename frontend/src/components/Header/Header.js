@@ -60,7 +60,7 @@ class Header extends Component {
 			<React.Fragment>
 				<Link to='/home' className={this.state.homeBtnClasses}>Home</Link>
 				<Link to='/courses' className={this.state.coursesBtnClasses}>Courses</Link>
-				<Link to='groups' className={this.state.groupsBtnClasses}>Groups</Link>
+				<Link to='/groups' className={this.state.groupsBtnClasses}>Groups</Link>
 			</React.Fragment>
 		);
 
