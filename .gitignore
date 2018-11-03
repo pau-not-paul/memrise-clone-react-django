@@ -8,9 +8,6 @@
 # testing
 /coverage
 
-# production
-/build
-
 env
 
 # misc
@@ -71,7 +68,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-build/
 develop-eggs/
 dist/
 downloads/
@@ -122,4 +118,3 @@ __pycache__/
 local_settings.py
 
 .env
-db.sqlite3
