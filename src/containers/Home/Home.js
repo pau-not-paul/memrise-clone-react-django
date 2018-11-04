@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 // import axios from 'axios';
 
 import styles from './Home.module.css';
@@ -74,4 +75,10 @@ class Home extends Component {
 	}
 }
 
-export default Home;
+const mapStateToProps = (state) => {
+	return {
+		username: state.username,
+	}
+}
+
+export default connect(mapStateToProps)(Home);

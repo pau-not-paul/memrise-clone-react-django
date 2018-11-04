@@ -35,10 +35,6 @@ class App extends Component {
 				</Switch>
 			);
 		} else {
-			console.log('here');
-			if (!this.props.loading) {
-				console.log('redirect');
-			}
 			return (
 				<Switch>
 					<Route path='/join' exact component={SignUp} />

@@ -60,6 +60,7 @@ export const authLogin = (username, password) => {
                 const token = res.data.key;
                 const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
                 localStorage.setItem('token', token);
+                localStorage.setItem('username', username);
                 localStorage.setItem('expirationDate', expirationDate);
                 dispatch(authSuccess(token));
                 dispatch(checkAuthTimeout(3600));
@@ -88,6 +89,7 @@ export const authSignup = (username, email, password) => {
                 const token = res.data.key;
                 const expirationDate = new Date(new Date().getTime() + 3600 * 1000);
                 localStorage.setItem('token', token);
+                localStorage.setItem('username', username);
                 localStorage.setItem('expirationDate', expirationDate);
                 dispatch(authSuccess(token));
                 dispatch(checkAuthTimeout(3600));
