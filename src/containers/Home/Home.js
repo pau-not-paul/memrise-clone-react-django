@@ -48,11 +48,6 @@ class Home extends Component {
 
 	componentDidMount () {
 		document.title = 'Dashboard - Memrise';
-		// axios.get('http://127.0.0.1:8000/courses/')
-		// 	.then(res => {
-		// 		console.log('hola');
-		// 		console.log(res.data);
-		// 	})
 	}
 
 	render() {    

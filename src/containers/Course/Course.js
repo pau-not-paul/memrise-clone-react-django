@@ -13,17 +13,15 @@ class Course extends Component {
 	}
 
 	componentWillMount() {
-		// setTimeout(this.loadCourse, 1000);
 		this.loadCourse();
 	}
 
 	loadCourse = () => {
 		const courseId = this.props.match.params.courseId;
 
-		// const url = (window.location.href.indexOf('heroku') !== -1)
-		// 	? 'https://memclone-react-django.herokuapp.com/'
-		// 	: 'http://localhost:8000/';
-		const url = 'https://memclone-react-django.herokuapp.com/';
+		const url = (window.location.href.indexOf('heroku') !== -1)
+			? 'https://memclone-react-django.herokuapp.com/'
+			: 'http://localhost:8000/';
 
 		axios.get(url + 'courses/' + courseId)
 			.then(res => {
@@ -34,13 +32,6 @@ class Course extends Component {
 					description: course.description
 				});
 			})
-		// const name = 'German 1';
-		// const description = 'Introduce yourself, get around, and learn a bunch of useful colloquial German expressions to make people smile';
-
-		// this.setState({
-		// 	name: name,
-		// 	description: description,
-		// });
 	}
 
 	render() {
