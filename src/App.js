@@ -19,10 +19,6 @@ class App extends Component {
 	}
 
 	render() {
-		if (this.props.loading) {
-			return null;
-		}
-
 		if (this.props.isAuthenticated) {
 			return (
 				<Switch>
@@ -39,11 +35,17 @@ class App extends Component {
 				</Switch>
 			);
 		} else {
+			console.log('here');
+			if (!this.props.loading) {
+				console.log('redirect');
+			}
 			return (
 				<Switch>
 					<Route path='/join' exact component={SignUp} />
 					<Route path='/login' exact component={Login} />
-					<Redirect path='*' to='/login' />
+					{this.props.loading ?
+						null : <Redirect path='*' to='/login' />
+					}
 				</Switch>
 			);
 		}

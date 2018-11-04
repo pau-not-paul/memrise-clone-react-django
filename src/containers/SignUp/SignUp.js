@@ -131,7 +131,13 @@ class SignUp extends Component {
 		let errorMessage = this.state.errorMessage;
 
 		if (this.props.error) {
-			const response = this.props.error.response.request.response;
+			let response = 'Error';
+			if (this.props.error.response
+				&& this.props.error.response.request
+				&& this.props.error.response.request.response
+			) {
+				response = this.props.error.response.request.response;
+			}
 			const p = JSON.parse(response);
 			let error = '';
 			for (var key in p) {

@@ -12,32 +12,32 @@ class Home extends Component {
 		loading: true,
 		coursesHTML: (
 			<React.Fragment>
-				<CourseCard loading/>
-				<CourseCard loading/>
+				<CourseCard loading />
+				<CourseCard loading />
 			</React.Fragment>
 		),
 	}
 
-	componentWillMount () {
+	componentWillMount() {
 		setTimeout(this.loadCourses, 100);
 	}
 
 	loadCourses = () => {
 		const coursesHTML = [];
 
-		for (let level of [1,2,3]) {
+		for (let level of [1, 2, 3]) {
 			const wordsLearned = 0;
 			const totalWords = 0;
 
 			const course = {
-				id: level+'',
-				name: 'German '+level,
-				wordsLearned: wordsLearned, 
+				id: 17 - Number(level),
+				name: 'German ' + level,
+				wordsLearned: wordsLearned,
 				totalWords: totalWords,
 			};
-			
+
 			coursesHTML.push(
-				<CourseCard key={course.id} course={course}/>
+				<CourseCard key={course.id} course={course} />
 			);
 		};
 
@@ -46,14 +46,14 @@ class Home extends Component {
 		})
 	}
 
-	componentDidMount () {
+	componentDidMount() {
 		document.title = 'Dashboard - Memrise';
 	}
 
-	render() {    
+	render() {
 		return (
 			<React.Fragment>
-				<Header url={this.props.match.url}/>
+				<Header url={this.props.match.url} />
 				<div className={styles.PageHead}>
 					<div className={styles.PageHeadRow}>
 						<div className={styles.Title}>
@@ -63,7 +63,7 @@ class Home extends Component {
 				</div>
 				<div className={styles.Content}>
 					<div className={styles.ContainerMain}>
-						<LeftColumn/>
+						<LeftColumn />
 						<div className={styles.RightColumn}>
 							{this.state.coursesHTML}
 						</div>
