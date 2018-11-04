@@ -9,17 +9,10 @@ import Spinner from '../../components/Spinner/Spinner';
 class Logout extends Component {
 
 	componentWillMount() {
-		// TODO: logout
-		// setTimeout(() => {
-		// 	this.props.history.push('/login');
-		// }, 1000);
 		this.props.logout();
 	}
 
 	render() {
-		// TODO: if loading show spinner
-		// TODO: show error message
-
 		return (
 			<div className={styles.Container}>
 				<Spinner />

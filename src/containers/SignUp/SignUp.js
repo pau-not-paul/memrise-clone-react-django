@@ -161,12 +161,12 @@ class SignUp extends Component {
 					<div className={styles.WhiteBox}>
 						<div className={styles.LoginTitle}>Sign up</div>
 						{errorMessage}
-						<div className={styles.Label}>Username:</div>
-						<input onChange={this.userNameChange} className={this.state.userNameInputClasses} />
 						<div className={styles.Label}>Email:</div>
-						<input onChange={this.emailChange} className={this.state.emailInputClasses} />
+						<input name='email' onChange={this.emailChange} className={this.state.emailInputClasses} />
+						<div className={styles.Label}>Username:</div>
+						<input name='username' onChange={this.userNameChange} className={this.state.userNameInputClasses} />
 						<div className={styles.Label}>Password:</div>
-						<input onChange={this.passwordChange} type='password' className={this.state.passwordInputClasses} />
+						<input name='password' onChange={this.passwordChange} type='password' className={this.state.passwordInputClasses} />
 						<div className={styles.Label}>Repeat password:</div>
 						<input onChange={this.password2Change} type='password' className={this.state.password2InputClasses} onKeyDown={this.onKeyDown} />
 						<div onClick={this.loginClick} className={styles.LoginButton}>Login</div>

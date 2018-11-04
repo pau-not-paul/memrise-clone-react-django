@@ -30,6 +30,7 @@ export const authFail = (error, isLogin) => {
 
 export const logout = () => {
     localStorage.removeItem('token');
+    localStorage.removeItem('username');
     localStorage.removeItem('expirationDate');
     return {
         type: actionTypes.AUTH_LOGOUT
@@ -50,7 +51,10 @@ export const authLogin = (username, password) => {
 
         const url = (window.location.href.indexOf('heroku') !== -1)
             ? 'https://memclone-react-django.herokuapp.com/'
-            : 'http://localhost:8000/';
+            : 'http://127.0.0.1:8000/';
+
+        axios.defaults.xsrfCookieName = 'csrftoken';
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
         axios.post(url + 'rest-auth/login/', {
             username: username,
@@ -78,6 +82,9 @@ export const authSignup = (username, email, password) => {
         const url = (window.location.href.indexOf('heroku') !== -1)
             ? 'https://memclone-react-django.herokuapp.com/'
             : 'http://localhost:8000/';
+
+        axios.defaults.xsrfCookieName = 'csrftoken';
+        axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
         axios.post(url + 'rest-auth/registration/', {
             username: username,
