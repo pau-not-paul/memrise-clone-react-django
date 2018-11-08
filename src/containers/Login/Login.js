@@ -82,7 +82,7 @@ class Login extends Component {
 		if (this.props.error) {
 			errorMessage = (
 				<div className={styles.ErrorMessage}>
-					Oopsie, wrong email or password. Let's try again. Careful with the Caps Lock!
+					Oopsie, wrong username or password. Let's try again. Careful with the Caps Lock!
 				</div>
 			);
 		}

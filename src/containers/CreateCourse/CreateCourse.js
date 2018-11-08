@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
 import styles from './CreateCourse.module.css';
 import Header from '../../components/Header/Header';
@@ -33,7 +34,15 @@ class CreateCourse extends Component {
 				? 'https://memclone-react-django.herokuapp.com/'
 				: 'http://localhost:8000/';
 
-			axios.post(url + 'courses/create/', {
+			axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+			axios.defaults.xsrfCookieName = "csrftoken";
+
+			axios.defaults.headers = {
+				"Content-Type": "application/json",
+				Authorization: `Token ${this.props.token}`,
+			};
+
+			axios.post(url + 'courses-api/create/', {
 				name: this.state.name,
 				description: this.state.description,
 			})
@@ -93,4 +102,11 @@ class CreateCourse extends Component {
 	}
 }
 
-export default CreateCourse;
+const mapStateToProps = (state) => {
+	return {
+		token: state.token,
+	}
+}
+
+export default connect(mapStateToProps)(CreateCourse);
+

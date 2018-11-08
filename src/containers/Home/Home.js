@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import axios from 'axios';
+import axios from 'axios';
 
 import styles from './Home.module.css';
 import Header from '../../components/Header/Header';
@@ -20,32 +20,45 @@ class Home extends Component {
 	}
 
 	componentWillMount() {
-		setTimeout(this.loadCourses, 100);
+		this.fetchCourses();
 	}
 
-	loadCourses = () => {
-		const coursesHTML = [];
+	fetchCourses = () => {
+		const url = (window.location.href.indexOf('heroku') !== -1)
+			? 'https://memclone-react-django.herokuapp.com/'
+			: 'http://localhost:8000/';
 
-		for (let level of [1, 2, 3]) {
-			const wordsLearned = 0;
-			const totalWords = 0;
+		axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+		axios.defaults.xsrfCookieName = "csrftoken";
 
-			const course = {
-				id: 17 - Number(level),
-				name: 'German ' + level,
-				wordsLearned: wordsLearned,
-				totalWords: totalWords,
-			};
-
-			coursesHTML.push(
-				<CourseCard key={course.id} course={course} />
-			);
+		axios.defaults.headers = {
+			"Content-Type": "application/json",
+			Authorization: `Token ${this.props.token}`,
 		};
 
-		this.setState({
-			coursesHTML: coursesHTML
-		})
-	}
+		const coursesHTML = [];
+
+		axios.get(url + 'profiles-api/u/')
+			.then(res => {
+				if (res.data) {
+					const courses = JSON.parse(res.data)
+					for (let c of courses) {
+						const course = {
+							id: c.pk,
+							name: c.fields.name,
+							wordsLearned: 0,
+							totalWords: 0,
+						};
+						coursesHTML.push(
+							<CourseCard key={course.id} course={course} />
+						);
+					}
+					this.setState({
+						coursesHTML: coursesHTML
+					})
+				}
+			})
+	} 
 
 	componentDidMount() {
 		document.title = 'Dashboard - Memrise';
@@ -78,6 +91,7 @@ class Home extends Component {
 const mapStateToProps = (state) => {
 	return {
 		username: state.username,
+		token: state.token,
 	}
 }
 

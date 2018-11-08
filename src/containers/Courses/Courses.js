@@ -22,7 +22,7 @@ class Courses extends Component {
 			? 'https://memclone-react-django.herokuapp.com/'
 			: 'http://localhost:8000/';
 
-		axios.get(url + 'courses/')
+		axios.get(url + 'courses-api/')
 			.then(res => {
 				for (let course of res.data) {
 					let justCreatedClass = '';
