@@ -68,13 +68,13 @@ class Home extends Component {
 		return (
 			<React.Fragment>
 				<Header url={this.props.match.url} />
-				<div className={styles.PageHead}>
+				{/*<div className={styles.PageHead}>
 					<div className={styles.PageHeadRow}>
 						<div className={styles.Title}>
 							German
 						</div>
 					</div>
-				</div>
+				</div>*/}
 				<div className={styles.Content}>
 					<div className={styles.ContainerMain}>
 						<LeftColumn />

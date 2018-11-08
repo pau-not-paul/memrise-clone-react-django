@@ -1,14 +1,17 @@
 certifi==2018.8.24
 chardet==3.0.4
 defusedxml==0.5.0
+dj-database-url==0.5.0
 Django==2.1.2
 django-allauth==0.37.1
 django-cors-headers==2.4.0
+django-heroku==0.3.1
 django-rest-auth==0.9.3
 djangorestframework==3.8.2
 gunicorn==19.7.1
 idna==2.7
 oauthlib==2.1.0
+psycopg2==2.7.5
 python3-openid==3.1.0
 pytz==2018.5
 requests==2.20.0
