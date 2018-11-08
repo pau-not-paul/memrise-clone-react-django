@@ -16,8 +16,6 @@ class Header extends Component {
 
 	shouldComponentUpdate(nextProps, nextState) {
 		if (nextProps.url !== this.props.url) {
-			console.log('nextProps: ');
-			console.log(nextProps);
 			this.setActiveBtn(nextProps);
 		}
 		return true;

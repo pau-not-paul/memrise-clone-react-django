@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import styles from './Home.module.css';
 import Header from '../../components/Header/Header';
+import Welcome from '../../components/Home/Welcome/Welcome';
 import LeftColumn from '../../components/Home/LeftColumn/LeftColumn';
 import CourseCard from '../../components/Home/CourseCard/CourseCard';
 
@@ -36,7 +37,7 @@ class Home extends Component {
 			Authorization: `Token ${this.props.token}`,
 		};
 
-		const coursesHTML = [];
+		let coursesHTML = [];
 
 		axios.get(url + 'profiles-api/u/')
 			.then(res => {
@@ -51,6 +52,11 @@ class Home extends Component {
 						};
 						coursesHTML.push(
 							<CourseCard key={course.id} course={course} />
+						);
+					}
+					if (coursesHTML.length === 0) {
+						coursesHTML = (
+							<Welcome/>
 						);
 					}
 					this.setState({
