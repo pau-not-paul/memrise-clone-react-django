@@ -4,6 +4,7 @@ import axios from 'axios';
 import styles from './Course.module.css';
 import Header from '../../components/Header/Header';
 import Spinner from '../../components/Spinner/Spinner';
+import * as profileActions from '../../store/actions/profile';
 
 class Course extends Component {
 	constructor(props) {
@@ -21,37 +22,29 @@ class Course extends Component {
 
 	componentDidMount() {
 		this.loadCourse();
-		this.fetchCourses();
+		this.checkIfAdded();
 	}
 
-	fetchCourses = () => {
-		const url = (window.location.href.indexOf('heroku') !== -1)
-			? 'https://memclone-react-django.herokuapp.com/'
-			: 'http://localhost:8000/';
+	componentWillReceiveProps(nextProps) {
+		if (this.props.profile.courses !== nextProps.profile.courses) {
+			this.checkIfAdded(nextProps);
+		}
+	}
 
-		axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-		axios.defaults.xsrfCookieName = "csrftoken";
-
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${this.props.token}`,
-		};
-
-		axios.get(url + 'profiles-api/u/')
-			.then(res => {
-				this.setState({ loading: false });
-				if (res.data) {
-					const courses = JSON.parse(res.data)
-					for (let c of courses) {
-						if (String(c.pk) === this.courseId) {
-							this.setState({ added: true });
-						}
+	checkIfAdded = (props = this.props) => {
+		if (!props.profile.loading) {
+			this.setState({ loading: false });
+			const courses = props.profile.courses;
+			let added = false;
+			if (courses && courses.length !== 0) {
+				for (let c of courses) {
+					if (String(c.id) === this.courseId) {
+						added = true;
 					}
 				}
-			})
-			.catch(err => {
-				this.setState({ loading: false });
-			});
+			}
+			this.setState({ added: added });
+		}
 	}
 
 	loadCourse = () => {
@@ -73,7 +66,7 @@ class Course extends Component {
 			})
 	}
 
-	updateCourse = (add) => {
+	updateCourse = (action) => {
 		axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 		axios.defaults.xsrfCookieName = "csrftoken";
 
@@ -86,11 +79,9 @@ class Course extends Component {
 			? 'https://memclone-react-django.herokuapp.com/'
 			: 'http://127.0.0.1:8000/';
 
-		const l = add ? 'add' : 'remove';
-
-		axios.post(url + 'profiles-api/' + l + '/' + this.courseId + '/')
+		axios.post(url + 'profiles-api/' + action + '/' + this.courseId + '/')
 			.then(res => {
-				this.setState({ added: add });
+				this.props.updateProfile();
 			});
 	}
 
@@ -111,9 +102,9 @@ class Course extends Component {
 						{this.state.description}
 					</div>
 					{this.state.added ?
-						<div className={styles.RemoveButton} onClick={() => this.updateCourse(false)}>Remove from my courses</div>
+						<div className={styles.RemoveButton} onClick={() => this.updateCourse('remove')}>Remove from my courses</div>
 						:
-						<div className={styles.StartButton} onClick={() => this.updateCourse(true)}>Add to my courses</div>
+						<div className={styles.StartButton} onClick={() => this.updateCourse('add')}>Add to my courses</div>
 					}
 				</div>
 			);
@@ -134,8 +125,15 @@ class Course extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		token: state.token,
+		profile: state.profile,
+		token: state.auth.token,
 	}
 }
 
-export default connect(mapStateToProps)(Course);
+const mapDispatchToProps = dispatch => {
+	return {
+		updateProfile: () => dispatch(profileActions.profileLoad())
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Course);

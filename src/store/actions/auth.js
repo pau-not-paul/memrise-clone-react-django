@@ -106,7 +106,7 @@ export const authSignup = (username, email, password) => {
                     "Content-Type": "application/json",
                     Authorization: `Token ${token}`,
                 };
-                axios.post(url+'profiles-api/create/', {courses: []});
+                axios.post(url + 'profiles-api/create/', { courses: [] });
             })
             .catch(err => {
                 dispatch(authFail(err, false))

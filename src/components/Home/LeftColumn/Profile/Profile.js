@@ -3,30 +3,23 @@ import styles from './Profile.module.css';
 
 class Profile extends Component {
 
-	state = {
-		username: '...',
-	}
-	componentWillMount() {
-		const username = localStorage.getItem('username');
-		this.setState({ username: username });
-	}
-
 	render() {
+		const profile = this.props.profile;
 		return (
 			<div className={styles.Profile}>
 				<div className={styles.ProfileHeader}>
-					<div className={styles.UserName}>{this.state.username}</div>
-					<div className={styles.Level}>LEVEL 1</div>
+					<div className={styles.UserName}>{profile.username}</div>
+					<div className={styles.Level}>LEVEL {profile.level}</div>
 					<img className={styles.ProfileImage} alt="" />
 				</div>
 				<div className={styles.ProfileStats}>
 					<div className={styles.StatsWrapper}>
-						<div className={styles.StatsNumber}>0</div>
+						<div className={styles.StatsNumber}>{profile.wordsLearned}</div>
 						<div className={styles.StatsLabel}>words learned</div>
 					</div>
 					<div className={styles.StatsSeparator}></div>
 					<div className={styles.StatsWrapper}>
-						<div className={styles.StatsNumber}>0</div>
+						<div className={styles.StatsNumber}>{profile.points}</div>
 						<div className={styles.StatsLabel}>points</div>
 					</div>
 				</div>

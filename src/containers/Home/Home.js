@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 import styles from './Home.module.css';
 import Header from '../../components/Header/Header';
@@ -21,49 +20,33 @@ export class Home extends Component {
 
 	componentDidMount() {
 		document.title = 'Dashboard - Memrise';
-		this.fetchCourses();
+		this.loadCourses();
 	}
 
-	fetchCourses = () => {
-		const url = (window.location.href.indexOf('heroku') !== -1)
-			? 'https://memclone-react-django.herokuapp.com/'
-			: 'http://localhost:8000/';
+	componentWillReceiveProps(nextProps) {
+		if (this.props.profile.courses !== nextProps.profile.courses) {
+			this.loadCourses(nextProps);
+		}
+	}
 
-		axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-		axios.defaults.xsrfCookieName = "csrftoken";
-
-		axios.defaults.headers = {
-			"Content-Type": "application/json",
-			Authorization: `Token ${this.props.token}`,
-		};
-
-		let coursesHTML = [];
-
-		axios.get(url + 'profiles-api/u/')
-			.then(res => {
-				if (res.data) {
-					const courses = JSON.parse(res.data)
-					for (let c of courses) {
-						const course = {
-							id: c.pk,
-							name: c.fields.name,
-							wordsLearned: 0,
-							totalWords: 0,
-						};
-						coursesHTML.push(
-							<CourseCard key={course.id} course={course} />
-						);
-					}
-					if (coursesHTML.length === 0) {
-						coursesHTML = (
-							<Welcome />
-						);
-					}
-					this.setState({
-						coursesHTML: coursesHTML
-					})
+	loadCourses = (props = this.props) => {
+		if (!props.profile.loading) {
+			let coursesHTML = [];
+			if (props.profile.courses.length === 0) {
+				coursesHTML = (
+					<Welcome />
+				);
+			} else {
+				for (let course of props.profile.courses) {
+					coursesHTML.push(
+						<CourseCard key={course.id} course={course} />
+					);
 				}
-			});
+			}
+			this.setState({
+				coursesHTML: coursesHTML
+			})
+		}
 	}
 
 	render() {
@@ -79,7 +62,7 @@ export class Home extends Component {
 				</div>*/}
 				<div className={styles.Content}>
 					<div className={styles.ContainerMain}>
-						<LeftColumn />
+						<LeftColumn profile={this.props.profile} />
 						<div className={styles.RightColumn}>
 							{this.state.coursesHTML}
 						</div>
@@ -92,8 +75,7 @@ export class Home extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		username: state.username,
-		token: state.token,
+		profile: state.profile,
 	}
 }
 

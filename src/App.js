@@ -10,12 +10,19 @@ import Login from './containers/Login/Login';
 import Logout from './containers/Logout/Logout';
 import SignUp from './containers/SignUp/SignUp';
 import NotFound from './containers/NotFound/NotFound';
-import * as actions from './store/actions/auth';
+import * as authActions from './store/actions/auth';
+import * as profileActions from './store/actions/profile';
 
 class App extends Component {
 
 	componentDidMount() {
 		this.props.onTryAutoSignup();
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (this.props.token !== nextProps.token) {
+			this.props.profileLoad(nextProps.token);
+		}
 	}
 
 	render() {
@@ -50,14 +57,16 @@ class App extends Component {
 
 const mapStateToProps = state => {
 	return {
-		isAuthenticated: state.token !== null,
-		loading: state.loading,
+		isAuthenticated: state.auth.token !== null,
+		token: state.auth.token,
+		loading: state.auth.loading,
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onTryAutoSignup: () => dispatch(actions.authCheckState())
+		onTryAutoSignup: () => dispatch(authActions.authCheckState()),
+		profileLoad: (token) => dispatch(profileActions.profileLoad(token))
 	};
 };
 

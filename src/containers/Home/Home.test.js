@@ -14,7 +14,15 @@ describe('<Home />', () => {
 	let wrapper;
 
 	beforeEach(() => {
-		wrapper = shallow(<Home match={{ url: '' }} username={'u'} token={'t'} />)
+		const profile = {
+			loading: true,
+			username: null,
+			level: null,
+			points: null,
+			wordsLearned: null,
+			courses: null,
+		};
+		wrapper = shallow(<Home match={{ url: '' }} profile={profile} />)
 	})
 
 	it('should have a Header', () => {
