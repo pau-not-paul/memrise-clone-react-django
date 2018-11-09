@@ -109,4 +109,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(CreateCourse);
-

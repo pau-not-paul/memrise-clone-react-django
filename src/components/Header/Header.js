@@ -1,76 +1,37 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './Header.module.css';
-// import MemriseLogo from '../../assets/images/MemriseLogo.svg';
+
+export class NavButton extends Component {
+	render() {
+		let active = this.props.isActive ? ' ' + styles.ActiveButton : '';
+		return <Link to={this.props.to} className={styles.NavButton + active}>{this.props.children}</Link>
+	}
+}
 
 class Header extends Component {
-	state = {
-		homeBtnClasses: styles.NavButton,
-		coursesBtnClasses: styles.NavButton,
-		groupsBtnClasses: styles.NavButton,
-	}
-
-	componentWillMount() {
-		this.setActiveBtn();
-	}
-
-	shouldComponentUpdate(nextProps, nextState) {
-		if (nextProps.url !== this.props.url) {
-			this.setActiveBtn(nextProps);
-		}
-		return true;
-	}
-
-
-	setActiveBtn = (props = this.props) => {
-		if (props.url.indexOf('home') === 1) {
-			this.setState({
-				homeBtnClasses: styles.NavButton + ' ' + styles.ActiveButton,
-				coursesBtnClasses: styles.NavButton,
-				groupsBtnClasses: styles.NavButton,
-			})
-		} else if (props.url.indexOf('course') === 1) {
-			this.setState({
-				homeBtnClasses: styles.NavButton,
-				coursesBtnClasses: styles.NavButton + ' ' + styles.ActiveButton,
-				groupsBtnClasses: styles.NavButton,
-			})
-		} else if (props.url.indexOf('groups') === 1) {
-			this.setState({
-				homeBtnClasses: styles.NavButton,
-				coursesBtnClasses: styles.NavButton,
-				groupsBtnClasses: styles.NavButton + ' ' + styles.ActiveButton,
-			})
-		} else if (props.url.indexOf('login') === 1) {
-			this.setState({
-				loginBtnClasses: styles.NavButton + ' ' + styles.ActiveButton,
-				signUpBtnClasses: styles.NavButton + ' ' + styles.SignUpPurple + ' ' + styles.LRMargin,
-			});
-		} else if (props.url.indexOf('join') === 1) {
-			this.setState({
-				loginBtnClasses: styles.NavButton,
-				signUpBtnClasses: styles.NavButton + ' ' + styles.ActiveButton + ' ' + styles.LRMargin,
-			});
-		}
-	}
-
 	render() {
+		const url = this.props.url.split('/')[1];
+
 		let buttons = (
 			<React.Fragment>
 				<div className={styles.NavRow}>
-					<Link to='/home' className={this.state.homeBtnClasses}>Home</Link>
-					<Link to='/courses' className={this.state.coursesBtnClasses}>Courses</Link>
-					<Link to='/groups' className={this.state.groupsBtnClasses}>Groups</Link>
+					<NavButton to='/home' isActive={url === 'home'}>Home</NavButton>
+					<NavButton to='/courses' isActive={url === 'courses' || url === 'course'}>Courses</NavButton>
+					<NavButton to='/groups' isActive={url === 'groups'}>Groups</NavButton>
 				</div>
 				<Link to='/logout' className={styles.LogoutBtn}>Log out</Link>
 			</React.Fragment>
 		);
 
-		if (this.props.url.indexOf('login') === 1 || this.props.url.indexOf('join') === 1) {
+		if (url === 'login' || url === 'join') {
+			let loginBtnActive = url === 'login' ? ' ' + styles.ActiveButton : '';
+			let signUpBtnActive = url === 'join' ? ' ' + styles.ActiveButton : ' ' + styles.SignUpPurple;
+
 			buttons = (
 				<div className={styles.AuthNavButtonsDiv}>
-					<Link to='/login' className={this.state.loginBtnClasses}>Login</Link>
-					<Link to='/join' className={this.state.signUpBtnClasses}>Sign up</Link>
+					<Link to='/login' className={styles.NavButton + loginBtnActive}>Login</Link>
+					<Link to='/join' className={styles.NavButton + ' ' + styles.LRMargin + signUpBtnActive}>Sign up</Link>
 				</div>
 			);
 		}

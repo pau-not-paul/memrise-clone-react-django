@@ -8,10 +8,9 @@ import Welcome from '../../components/Home/Welcome/Welcome';
 import LeftColumn from '../../components/Home/LeftColumn/LeftColumn';
 import CourseCard from '../../components/Home/CourseCard/CourseCard';
 
-class Home extends Component {
+export class Home extends Component {
 
 	state = {
-		loading: true,
 		coursesHTML: (
 			<React.Fragment>
 				<CourseCard loading />
@@ -20,7 +19,8 @@ class Home extends Component {
 		),
 	}
 
-	componentWillMount() {
+	componentDidMount() {
+		document.title = 'Dashboard - Memrise';
 		this.fetchCourses();
 	}
 
@@ -56,18 +56,14 @@ class Home extends Component {
 					}
 					if (coursesHTML.length === 0) {
 						coursesHTML = (
-							<Welcome/>
+							<Welcome />
 						);
 					}
 					this.setState({
 						coursesHTML: coursesHTML
 					})
 				}
-			})
-	} 
-
-	componentDidMount() {
-		document.title = 'Dashboard - Memrise';
+			});
 	}
 
 	render() {

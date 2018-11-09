@@ -11,7 +11,7 @@ class Courses extends Component {
 		coursesHTML: null,
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.loadCourses();
 	}
 

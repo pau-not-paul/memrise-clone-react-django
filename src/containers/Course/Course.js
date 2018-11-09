@@ -19,7 +19,7 @@ class Course extends Component {
 		loading: true,
 	}
 
-	componentWillMount() {
+	componentDidMount() {
 		this.loadCourse();
 		this.fetchCourses();
 	}
@@ -39,20 +39,20 @@ class Course extends Component {
 
 		axios.get(url + 'profiles-api/u/')
 			.then(res => {
-				this.setState({loading: false});
+				this.setState({ loading: false });
 				if (res.data) {
 					const courses = JSON.parse(res.data)
 					for (let c of courses) {
 						if (String(c.pk) === this.courseId) {
-							this.setState({added: true});
+							this.setState({ added: true });
 						}
 					}
 				}
 			})
 			.catch(err => {
-				this.setState({loading: false});
+				this.setState({ loading: false });
 			});
-	} 
+	}
 
 	loadCourse = () => {
 		const url = (window.location.href.indexOf('heroku') !== -1)
@@ -83,14 +83,14 @@ class Course extends Component {
 		};
 
 		const url = (window.location.href.indexOf('heroku') !== -1)
-				? 'https://memclone-react-django.herokuapp.com/'
-				: 'http://127.0.0.1:8000/';
+			? 'https://memclone-react-django.herokuapp.com/'
+			: 'http://127.0.0.1:8000/';
 
 		const l = add ? 'add' : 'remove';
-	
-		axios.post(url+'profiles-api/'+l+'/'+this.courseId+'/')
+
+		axios.post(url + 'profiles-api/' + l + '/' + this.courseId + '/')
 			.then(res => {
-				this.setState({added: add});
+				this.setState({ added: add });
 			});
 	}
 
@@ -110,7 +110,7 @@ class Course extends Component {
 					<div className={styles.Description}>
 						{this.state.description}
 					</div>
-					{this.state.added ? 
+					{this.state.added ?
 						<div className={styles.RemoveButton} onClick={() => this.updateCourse(false)}>Remove from my courses</div>
 						:
 						<div className={styles.StartButton} onClick={() => this.updateCourse(true)}>Add to my courses</div>
@@ -139,4 +139,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps)(Course);
-
