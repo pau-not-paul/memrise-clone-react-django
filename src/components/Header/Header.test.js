@@ -30,4 +30,11 @@ describe('Header', () => {
 		expect(wrapper.contains(<Link to='/login' className={styles.NavButton + ' ' + styles.ActiveButton}>Login</Link>)).toEqual(true);
 		expect(wrapper.contains(<Link to='/join' className={styles.NavButton + ' ' + styles.LRMargin + ' ' + styles.SignUpPurple}>Sign up</Link>)).toEqual(true);
 	});
+
+	it('NavButton check', () => {
+		const navButton = shallow(<NavButton to='/home' isActive>Home</NavButton>);
+		expect(navButton.contains(<Link to='/home' className={styles.NavButton + ' ' + styles.ActiveButton}>Home</Link>)).toEqual(true);
+		navButton.setProps({ isActive: false });
+		expect(navButton.contains(<Link to='/home' className={styles.NavButton}>Home</Link>)).toEqual(true);
+	});
 });

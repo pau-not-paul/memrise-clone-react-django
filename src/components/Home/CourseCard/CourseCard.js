@@ -1,32 +1,23 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './CourseCard.module.css';
-import img from '../../../assets/images/16054981000161215151931.jpg';
+import img from '../../../assets/images/course_image_small.jpg';
 
 class CourseCard extends Component {
 
 	render() {
+		const course = this.props.course;
 		if (this.props.loading) {
 			return (
 				<div className={styles.CourseCard + ' ' + styles.LoadingBox} />
 			);
 		} else {
-			// const progress = 100*Number(this.props.course.wordsLearned)/Number(this.props.course.totalWords);
-			const progress = 0;
-			const progressWidth = {
-				width: progress + '%',
-			};
-
-			let courseComplete = null;
-			let nextUpButtonClasses = styles.NextUpButton;
-			if (progress === 100) {
-				courseComplete = (
-					<div className={styles.CourseCompleted}>
-						Course completed!
-	 				</div>
-				);
-				nextUpButtonClasses = styles.NextUpButton + ' ' + styles.Disabled;
+			let progress = 0;
+			if (Number(course.totalWords) !== 0) {
+				progress = 100 * Number(course.wordsLearned) / Number(course.totalWords);
 			}
+			const progressWidth = { width: progress + '%' };
+			let nextUpButtonClasses = (progress === 100) ? styles.NextUpButton + ' ' + styles.Disabled : styles.NextUpButton;
 
 			// TODO TEMPORARY
 			nextUpButtonClasses = styles.NextUpButton + ' ' + styles.Disabled;
@@ -39,12 +30,16 @@ class CourseCard extends Component {
 							<img src={img} className={styles.Image} alt='' />
 						</div>
 						<div className={styles.CardMainContainer}>
-							<Link className={styles.CourseTitle} to={"/course/" + this.props.course.id}>{this.props.course.name}</Link>
-							<div className={styles.WordsLearned}>{this.props.course.wordsLearned}/{this.props.course.totalWords} words learned</div>
+							<Link className={styles.CourseTitle} to={"/course/" + course.id}>{course.name}</Link>
+							<div className={styles.WordsLearned}>{course.wordsLearned}/{course.totalWords} words learned</div>
 							<div className={styles.ProgressBar}>
 								<div style={progressWidth} className={styles.Progress} />
 							</div>
-							{courseComplete}
+							{(progress === 100) ? (
+								<div className={styles.CourseCompleted}>
+									Course completed!
+	 							</div>
+							) : null}
 						</div>
 					</div>
 					<div className={styles.CardBottom}>
