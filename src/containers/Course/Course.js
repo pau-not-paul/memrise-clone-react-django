@@ -4,6 +4,7 @@ import axios from 'axios';
 import styles from './Course.module.css';
 import Header from '../../components/Header/Header';
 import Spinner from '../../components/Spinner/Spinner';
+import QuitCourseModal from '../../components/QuitCourseModal/QuitCourseModal';
 import * as profileActions from '../../store/actions/profile';
 
 class Course extends Component {
@@ -18,6 +19,7 @@ class Course extends Component {
 		description: null,
 		added: false,
 		loading: true,
+		modal: false,
 	}
 
 	componentDidMount() {
@@ -66,6 +68,14 @@ class Course extends Component {
 			})
 	}
 
+	openModal = () => {
+		this.setState({ modal: true });
+	}
+
+	closeModal = () => {
+		this.setState({ modal: false });
+	}
+
 	updateCourse = (action) => {
 		axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
 		axios.defaults.xsrfCookieName = "csrftoken";
@@ -82,6 +92,9 @@ class Course extends Component {
 		axios.post(url + 'profiles-api/' + action + '/' + this.courseId + '/')
 			.then(res => {
 				this.props.updateProfile();
+				if (action === 'remove') {
+					this.closeModal();
+				}
 			});
 	}
 
@@ -102,7 +115,7 @@ class Course extends Component {
 						{this.state.description}
 					</div>
 					{this.state.added ?
-						<div className={styles.RemoveButton} onClick={() => this.updateCourse('remove')}>Remove from my courses</div>
+						<div className={styles.RemoveButton} onClick={this.openModal}>Remove from my courses</div>
 						:
 						<div className={styles.StartButton} onClick={() => this.updateCourse('add')}>Add to my courses</div>
 					}
@@ -113,6 +126,9 @@ class Course extends Component {
 		return (
 			<React.Fragment>
 				<Header url={this.props.match.url} />
+				{this.state.modal ?
+					<QuitCourseModal closeModal={this.closeModal} quitCourse={() => this.updateCourse('remove')} />
+					: null}
 				<div className={styles.PageHead}>
 					<div className={styles.PageHeadRow}>
 						{courseDetails}

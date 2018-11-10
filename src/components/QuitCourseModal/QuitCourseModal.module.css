@@ -1,0 +1,83 @@
+.Full {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.ModalDialog {
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    z-index: 1100;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: center;
+}
+
+.Modal {
+    font-family: "Open Sans",sans-serif;
+    width: 600px;
+    max-width: 90%;
+    background-color: white;
+    border: 1px solid rgba(0,0,0,0.2);
+    border-radius: 6px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.ModalHeader {
+    color: #3E3E3E;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.ModalBody {
+    color: #3E3E3E;
+    padding: 20px;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 0.95em;
+    line-height: 1.5em;
+}
+
+.ModalFooter {
+    color: #3E3E3E;
+    padding: 10px;
+    background-color: #f5f5f5;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.Button {
+    margin: 5px;
+    border: 1px solid #e6e6e6;
+    background-color: #fff;
+    border-color: #CDCCCB;
+    padding: 8px 20px;
+    transition: background-color .2s;
+    border-radius: 6.2px;
+    line-height: 20px;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+.Button:hover {
+    background-color: #eee;
+}
+
+.YesButton {
+    color: white;
+    background-color: rgb(102, 190, 237);
+}
+
+.YesButton:hover {
+    color: white;
+    background-color: rgba(90, 180, 220);
+}

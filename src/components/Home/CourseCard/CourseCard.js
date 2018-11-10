@@ -2,8 +2,21 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import styles from './CourseCard.module.css';
 import img from '../../../assets/images/course_image_small.jpg';
+import QuitCourseModal from '../../QuitCourseModal/QuitCourseModal';
 
 class CourseCard extends Component {
+
+	state = {
+		modal: false,
+	}
+
+	openModal = () => {
+		this.setState({ modal: true });
+	}
+
+	closeModal = () => {
+		this.setState({ modal: false });
+	}
 
 	render() {
 		const course = this.props.course;
@@ -25,12 +38,30 @@ class CourseCard extends Component {
 
 			return (
 				<div className={styles.CourseCard}>
+					{this.state.modal ?
+						<QuitCourseModal closeModal={this.closeModal} quitCourse={() => this.props.quitCourse(course.id)} />
+						: null}
 					<div className={styles.CardTop}>
 						<div className={styles.ImgWrapper}>
 							<img src={img} className={styles.Image} alt='' />
 						</div>
 						<div className={styles.CardMainContainer}>
-							<Link className={styles.CourseTitle} to={"/course/" + course.id}>{course.name}</Link>
+							<div className={styles.TitleRow}>
+								<Link className={styles.CourseTitle} to={"/course/" + course.id}>{course.name}</Link>
+								<div className={styles.MoreOptionsDiv}>
+									<div className={styles.MoreOptionsButton} />
+									<div className={styles.TooltipWrapper}>
+										<ul className={styles.Tooltip}>
+											<li>
+												<Link className={styles.TooltipLink} to={"/course/" + course.id}>Course details</Link>
+											</li>
+											<li>
+												<div onClick={this.openModal} className={styles.TooltipLink}>Quit course</div>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
 							<div className={styles.WordsLearned}>{course.wordsLearned}/{course.totalWords} words learned</div>
 							<div className={styles.ProgressBar}>
 								<div style={progressWidth} className={styles.Progress} />

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import styles from './Home.module.css';
 import Header from '../../components/Header/Header';
 import Welcome from '../../components/Home/Welcome/Welcome';
 import LeftColumn from '../../components/Home/LeftColumn/LeftColumn';
 import CourseCard from '../../components/Home/CourseCard/CourseCard';
+
+import * as profileActions from '../../store/actions/profile';
 
 export class Home extends Component {
 
@@ -39,7 +42,7 @@ export class Home extends Component {
 			} else {
 				for (let course of props.profile.courses) {
 					coursesHTML.push(
-						<CourseCard key={course.id} course={course} />
+						<CourseCard key={course.id} course={course} quitCourse={this.quitCourse} />
 					);
 				}
 			}
@@ -47,6 +50,25 @@ export class Home extends Component {
 				coursesHTML: coursesHTML
 			})
 		}
+	}
+
+	quitCourse = (courseId) => {
+		axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+		axios.defaults.xsrfCookieName = "csrftoken";
+
+		axios.defaults.headers = {
+			"Content-Type": "application/json",
+			Authorization: `Token ${this.props.token}`,
+		};
+
+		const url = (window.location.href.indexOf('heroku') !== -1)
+			? 'https://memclone-react-django.herokuapp.com/'
+			: 'http://127.0.0.1:8000/';
+
+		axios.post(url + 'profiles-api/remove/' + courseId + '/')
+			.then(res => {
+				this.props.updateProfile();
+			});
 	}
 
 	render() {
@@ -76,7 +98,14 @@ export class Home extends Component {
 const mapStateToProps = (state) => {
 	return {
 		profile: state.profile,
+		token: state.auth.token,
 	}
 }
 
-export default connect(mapStateToProps)(Home);
+const mapDispatchToProps = dispatch => {
+	return {
+		updateProfile: () => dispatch(profileActions.profileLoad())
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
