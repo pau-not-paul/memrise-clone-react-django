@@ -52,8 +52,6 @@ class CreateCourse extends Component {
 				Authorization: `Token ${this.props.token}`,
 			};
 
-			console.log(this.props.username);
-
 			axios.post(url + 'courses-api/create/', {
 				name: this.state.name,
 				description: this.state.description,

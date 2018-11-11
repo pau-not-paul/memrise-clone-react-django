@@ -142,7 +142,6 @@ class SignUp extends Component {
 			let error = '';
 			for (var key in p) {
 				if (p.hasOwnProperty(key)) {
-					console.log(key + " -> " + p[key]);
 					error += ' ' + p[key];
 				}
 			}

@@ -38,7 +38,7 @@ class Courses extends Component {
 						</Link>
 					);
 				}
-				coursesHTML.reverse();
+
 				this.setState({
 					coursesHTML: coursesHTML
 				});

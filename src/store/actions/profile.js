@@ -45,11 +45,12 @@ export const profileLoad = (token) => {
                     const courses = JSON.parse(res.data)
                     const coursesF = [];
                     for (let c of courses) {
+                        const totalWords = JSON.parse(c.fields.words).length;
                         const course = {
                             id: c.pk,
                             name: c.fields.name,
                             wordsLearned: 0,
-                            totalWords: 0,
+                            totalWords: totalWords,
                         };
                         coursesF.push(course);
                     }

@@ -20,6 +20,7 @@ class CourseCard extends Component {
 
 	render() {
 		const course = this.props.course;
+
 		if (this.props.loading) {
 			return (
 				<div className={styles.CourseCard + ' ' + styles.LoadingBox} />

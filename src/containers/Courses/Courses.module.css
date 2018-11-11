@@ -95,6 +95,8 @@ body {
     color: #3E3E3E;
     font-weight: bold;
     font-size: 1.1em;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .CourseCard:hover {
