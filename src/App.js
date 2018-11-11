@@ -6,6 +6,7 @@ import Home from './containers/Home/Home';
 import Courses from './containers/Courses/Courses';
 import Course from './containers/Course/Course';
 import CreateCourse from './containers/CreateCourse/CreateCourse';
+import EditCourse from './containers/EditCourse/EditCourse';
 import Login from './containers/Login/Login';
 import Logout from './containers/Logout/Logout';
 import SignUp from './containers/SignUp/SignUp';
@@ -31,6 +32,7 @@ class App extends Component {
 				<Switch>
 					<Route path='/logout' exact component={Logout} />
 					<Route path='/course/create' exact component={CreateCourse} />
+					<Route path='/course/:courseId/edit' exact component={EditCourse} />
 					<Route path='/course/:courseId' exact component={Course} />
 					<Route path='/courses/:courseId' exact component={Courses} />
 					<Route path='/courses' exact component={Courses} />

@@ -7,8 +7,8 @@
 	justify-content: center;
     border-bottom: solid 1px #e6e6e6;
     color: white;
-    padding: 20px;
-    padding-top: 82px;
+    padding: 0 20px;
+    padding-top: 62px;
 }
 
 .PageHeadRow {
@@ -20,7 +20,7 @@
 	min-height: 100%;
 	width: 960px;
     max-width: 960px;
-    margin: 0 30px;
+    margin: 0 10px;
 }
 
 .CourseDetails {
@@ -85,4 +85,29 @@ body {
 .Disabled {
 	cursor: default !important;
 	filter: grayscale(100%) opacity(0.6);
+}
+
+.SecondHeader {
+    background-color: white;
+    border-bottom: solid 1px #e6e6e6;
+}
+
+.Row {
+    margin: auto;
+    padding: 20px 30px;
+    max-width: 960px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.EditBtn {
+    background-image: linear-gradient(-180deg, #fff 0%, #f4f4f4 100%);
+    border: 1px solid #cdcdcd;
+    font-size: 0.9em;
+    color: #696464;
+    padding: 7px 20px;
+    cursor: pointer;
+    border-radius: 5px;
 }

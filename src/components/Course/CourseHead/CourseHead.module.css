@@ -1,0 +1,46 @@
+.PageHead {
+    min-height: 100px;
+    background-color: #825fb6;
+    background-image: linear-gradient(to bottom, #825fb6, #5f3b96);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: solid 1px #e6e6e6;
+    color: white;
+    padding: 0 20px;
+    padding-top: 62px;
+}
+
+.PageHeadRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 100px;
+    width: 960px;
+    max-width: 960px;
+    margin: 10px 10px;
+}
+
+.CourseDetails {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.SpinnerWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Title {
+    font-weight: 600;
+    font-size: 1.6em;
+    width: 100%;
+}
+
+.Description {
+    margin: 10px 0;
+}

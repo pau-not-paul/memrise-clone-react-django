@@ -63,6 +63,7 @@
 	box-sizing: border-box;
 	padding: 11px 18px;
 	color: #3E3E3E;
+	resize: none;
 }
 
 .LoginButton {
@@ -82,5 +83,17 @@
 }
 
 .Error {
-	border: 1px solid rgba(255,0,0,0.7);	
+	border: 1px solid rgba(255,0,0,0.7) !important;	
+}
+
+.Select {
+	color: #3E3E3E;
+	font-size: 0.9em;
+	height: 2em;
+	width: 200px;
+	border: 1px solid #bbb;
+}
+
+.Select, textarea {
+	color: #3E3E3E;
 }

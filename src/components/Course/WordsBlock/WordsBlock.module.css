@@ -1,0 +1,56 @@
+.WordsBlock {
+    margin: 30px auto 0 auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 950px;
+}
+
+.RowWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.Row {
+    padding: 15px 40px;
+    width: 100%;
+    max-width: 950px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #3E3E3E;
+    font-size: 0.9em;    
+}
+
+.LanguagesRow {
+    padding: 20px 30px;
+    margin-right: 50px;
+    width: 100%;
+    max-width: 950px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+    color: #3E3E3E;
+}
+
+.Column {
+    flex-basis: 0;
+    flex-grow: 1;
+}
+
+.RemoveBtn{
+    width: 20px;
+    height: 20px;
+    background-image: url('../../../assets/icons/baseline-delete_forever.svg');
+    cursor: pointer;
+    visibility: hidden;
+    filter: opacity(0.7);
+}
+
+.Row:hover .RemoveBtn {
+    visibility: visible;
+}
