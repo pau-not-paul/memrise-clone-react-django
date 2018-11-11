@@ -53,8 +53,8 @@ export const authLogin = (username, password) => {
             ? 'https://memclone-react-django.herokuapp.com/'
             : 'http://127.0.0.1:8000/';
 
-        axios.defaults.xsrfCookieName = '';
-        axios.defaults.xsrfHeaderName = '';
+        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+        axios.defaults.xsrfCookieName = "csrftoken";
 
         axios.defaults.headers = {
             "Content-Type": "application/json",
@@ -88,8 +88,8 @@ export const authSignup = (username, email, password) => {
             ? 'https://memclone-react-django.herokuapp.com/'
             : 'http://localhost:8000/';
 
-        axios.defaults.xsrfCookieName = '';
-        axios.defaults.xsrfHeaderName = '';
+        axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+        axios.defaults.xsrfCookieName = "csrftoken";
 
         axios.defaults.headers = {
             "Content-Type": "application/json",

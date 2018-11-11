@@ -65,17 +65,16 @@ class EditCourse extends Component {
 		});
 
 		this.setState({ words: words });
-
 		this.pushWordsUpdate(words);
 	}
 
-	removeWord = (word, description) => {
+	removeWord = (pair) => {
 		const words = this.state.course.words;
 
-		for (let w of words) {
-			if (w.word === word && w.description === description) {
-				words.pop(w);
-			}
+		const index = words.indexOf(pair);
+
+		if (index !== -1) {
+			words.splice(index, 1);
 		}
 
 		this.setState({ words: words });

@@ -15,6 +15,10 @@ class WordsBlock extends Component {
 							{this.props.course.description}
 						</div>
 					</div>
+					<div className={styles.CreatedByDiv}>
+						<span className={styles.CreatedBySpan}>Created by </span>
+						<span className={styles.Owner}>{this.props.course.owner}</span>
+					</div>
 				</div>
 			</div>
 		);

@@ -19,7 +19,7 @@ class WordsBlock extends Component {
 							<div className={styles.Column}>{p.word}</div>
 							<div className={styles.Column}>{p.description}</div>
 							{this.props.removeWord ?
-								<div className={styles.RemoveBtn} onClick={() => this.props.removeWord(p.word, p.description)} /> : null
+								<div className={styles.RemoveBtn} onClick={() => this.props.removeWord(p)} /> : null
 							}
 						</div>
 					</div>

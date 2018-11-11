@@ -1,5 +1,5 @@
 .WordsBlock {
-    margin: 30px auto 0 auto;
+    margin: 30px auto 60px auto;
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -27,7 +27,7 @@
 
 .LanguagesRow {
     padding: 20px 30px;
-    margin-right: 50px;
+    margin-right: 20px;
     width: 100%;
     max-width: 950px;
     display: flex;
@@ -40,6 +40,7 @@
 .Column {
     flex-basis: 0;
     flex-grow: 1;
+    padding-right: 10px;
 }
 
 .RemoveBtn{

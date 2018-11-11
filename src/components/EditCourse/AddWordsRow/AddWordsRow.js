@@ -13,6 +13,7 @@ class AddWordsRow extends Component {
 			this.props.addNewWord(this.state.word, this.state.description);
 			this.setState({ word: '', description: '' });
 			this.focusFirstInput();
+			window.scrollTo(0, document.body.scrollHeight);
 		}
 	}
 
@@ -24,9 +25,13 @@ class AddWordsRow extends Component {
 		}
 	}
 
-	onKeyDown = (event) => {
+	onKeyDown = (event, firstInput) => {
 		if (event.key === 'Enter') {
-			this.confirm();
+			if (firstInput) {
+				this.descriptionInput.focus();
+			} else {
+				this.confirm();
+			}
 		}
 	}
 
@@ -49,10 +54,10 @@ class AddWordsRow extends Component {
 				<div className={styles.RowWrapper}>
 					<div className={styles.Row}>
 						<div className={styles.Column}>
-							<input ref={(input) => { this.firstInput = input; }} value={this.state.word} onChange={(event) => this.wordChange(event, true)} className={styles.Input} />
+							<input ref={(input) => { this.firstInput = input; }} value={this.state.word} onKeyDown={(e) => this.onKeyDown(e, true)} onChange={(event) => this.wordChange(event, true)} className={styles.Input} />
 						</div>
 						<div className={styles.Column}>
-							<input value={this.state.description} onKeyDown={this.onKeyDown} onChange={(event) => this.wordChange(event, false)} className={styles.Input} />
+							<input ref={(input) => { this.descriptionInput = input; }} value={this.state.description} onKeyDown={(e) => this.onKeyDown(e, false)} onChange={(event) => this.wordChange(event, false)} className={styles.Input} />
 						</div>
 						<div className={confirmIconClasses} onClick={this.confirm} />
 					</div>
