@@ -17,9 +17,11 @@ class Course extends Component {
 		added: false,
 		loading: true,
 		modal: false,
+		wordsLearned: 0,
 	}
 
 	componentDidMount() {
+		this.props.updateProfile();
 		this.loadCourse();
 		this.checkIfAdded();
 	}
@@ -44,14 +46,20 @@ class Course extends Component {
 			this.setState({ loading: false });
 			const courses = props.profile.courses;
 			let added = false;
+			let wordsLearned = 0;
+
 			if (courses && courses.length !== 0) {
 				for (let c of courses) {
 					if (String(c.id) === this.state.courseId) {
 						added = true;
+						wordsLearned = c.wordsLearned;
 					}
 				}
 			}
-			this.setState({ added: added });
+			this.setState({
+				added: added,
+				wordsLearned: wordsLearned
+			});
 		}
 	}
 
@@ -66,17 +74,15 @@ class Course extends Component {
 		axios.get(url + 'courses-api/' + this.state.courseId + '/')
 			.then(res => {
 				const course = res.data;
-
 				const words = JSON.parse(course.words);
-
 				if (words.length === 0) {
 					course.words = [{ word: 'This course is empty', description: '' }];
 				} else {
 					course.words = words;
 				}
-
+				course.wordsLearned = 0;
+				course.totalWords = words.length;
 				this.checkIfOwner(this.props, course);
-
 				this.setState({
 					course: course,
 				});
@@ -113,15 +119,39 @@ class Course extends Component {
 			});
 	}
 
+	learn = () => {
+		const course = this.state.course;
+		if (Number(course.totalWords) !== 0 &&
+			this.state.wordsLearned !== Number(course.totalWords)) {
+
+			this.props.history.push('/learn/' + this.state.courseId);
+		}
+	}
+
 	render() {
-		if (this.state.course && !this.state.loading) {
+		const course = this.state.course;
+		if (course && !this.state.loading) {
+			let learnBtnClasses;
+			let progressWidth;
+			let progress = 0;
+
+			if (this.state.added) {
+				learnBtnClasses = styles.LearnBtn + ' ' + styles.Disabled;
+
+				if (Number(course.totalWords) !== 0) {
+					progress = 100 * Number(this.state.wordsLearned) / Number(course.totalWords);
+					learnBtnClasses = (progress === 100) ? styles.LearnBtn + ' ' + styles.Disabled : styles.LearnBtn;
+				}
+				progressWidth = { width: progress + '%' };
+			}
+
 			return (
 				<React.Fragment>
 					<Header url={this.props.match.url} />
 					{this.state.modal ?
 						<QuitCourseModal closeModal={this.closeModal} quitCourse={() => this.updateCourse('remove')} />
 						: null}
-					<CourseHead course={this.state.course} />
+					<CourseHead course={course} />
 					<div className={styles.SecondHeader}>
 						<div className={styles.Row}>
 							{this.state.added ?
@@ -136,6 +166,21 @@ class Course extends Component {
 							}
 						</div>
 					</div>
+					{this.state.added ?
+						<div className={styles.ProgressDiv}>
+							<div className={styles.WordsLearned}>{this.state.wordsLearned} / {course.totalWords} words learned</div>
+							<div className={styles.ProgressBar}>
+								<div style={progressWidth} className={styles.Progress} />
+							</div>
+							{(progress === 100) ? (
+								<div className={styles.CourseCompleted}>
+									Course completed!
+	 							</div>
+							) : null}
+							<div onClick={this.learn} className={learnBtnClasses}>Learn</div>
+						</div>
+						: null
+					}
 					<WordsBlock course={this.state.course} />
 				</React.Fragment>
 			);

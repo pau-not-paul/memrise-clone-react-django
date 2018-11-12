@@ -9,7 +9,7 @@ class SessionComplete extends Component {
 					Session complete!
 				</div>
 				<div onClick={this.props.home} className={styles.NextButton}>
-					<div className={styles.BtnText}>Home</div>
+					<div className={styles.BtnText}>Course</div>
 					<div className={styles.RightArrow}></div>
 				</div>
 			</React.Fragment>

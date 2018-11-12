@@ -1,0 +1,75 @@
+.Content {
+    margin: auto;
+    max-width: 600px;
+    margin-top: 63px;
+    display: flex;
+    flex-direction: row;
+}
+
+.Main {
+    flex-grow: 1;
+    padding-top: 30px;
+}
+
+.Word {
+    font-size: 2.5em;
+    color: #3E3E3E;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+}
+
+.Input {
+	width: 100%;
+	font-size: 16px;
+	height: 44px;
+	border-radius: 6px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	padding: 11px 18px;
+    color: #3E3E3E;
+    margin-top: 20px;
+}
+
+.InputCorrect {
+    background-color: rgb(110, 206, 110);
+    color:white;
+}
+
+.InputWrong {
+    background-color: rgb(223, 57, 68);
+    color:white;
+}
+
+.RightColumn {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.NextButton {
+    height: 70px;
+    width: 40px;
+    padding: 15px;
+    color: #fff;
+    border: 1px solid #aaa;
+    background-color: #bbb;
+    text-shadow: 1px 1px 0 #777;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+
+.NextButton:hover {
+    background-color: rgb(139, 197, 219);
+}
+
+.RightArrow {
+    width: 100%;
+    height: 25px;
+    background-image: url('../../../assets/icons/right-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: 0% 100%;
+    margin: 10px 0;
+    margin-left: 7px;
+}

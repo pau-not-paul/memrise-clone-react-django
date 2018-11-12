@@ -7,7 +7,7 @@ export const profileStart = () => {
     }
 }
 
-export const profileLoaded = (username, courses, level, wordsLearned, points) => {
+export const profileLoaded = (username, courses, level, wordsLearned, points, progress) => {
     return {
         type: actionTypes.PROFILE_LOADED,
         username: username,
@@ -15,6 +15,7 @@ export const profileLoaded = (username, courses, level, wordsLearned, points) =>
         level: level,
         wordsLearned: wordsLearned,
         points: points,
+        progress: progress,
     }
 }
 
@@ -42,14 +43,21 @@ export const profileLoad = (token) => {
         axios.get(url + 'profiles-api/u/')
             .then(res => {
                 if (res.data) {
-                    const courses = JSON.parse(res.data)
+                    const obj = JSON.parse(res.data);
+                    const courses = JSON.parse(obj.courses);
+                    const progress = JSON.parse(obj.progress);
+
                     const coursesF = [];
                     for (let c of courses) {
                         const totalWords = JSON.parse(c.fields.words).length;
+                        let wordsLearned = 0;
+                        if (progress[c.pk]) {
+                            wordsLearned = progress[c.pk].wordsLearned;
+                        }
                         const course = {
                             id: c.pk,
                             name: c.fields.name,
-                            wordsLearned: 0,
+                            wordsLearned: wordsLearned,
                             totalWords: totalWords,
                         };
                         coursesF.push(course);
@@ -57,7 +65,7 @@ export const profileLoad = (token) => {
                     const level = 1;
                     const wordsLearned = 0;
                     const points = 0;
-                    dispatch(profileLoaded(username, coursesF, level, wordsLearned, points));
+                    dispatch(profileLoaded(username, coursesF, level, wordsLearned, points, progress));
                 }
             });
     }

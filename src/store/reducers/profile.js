@@ -8,6 +8,7 @@ const initialState = {
     points: 0,
     wordsLearned: 0,
     courses: null,
+    progress: null,
 }
 
 const profileStart = state => {
@@ -24,6 +25,7 @@ const profileLoaded = (state, action) => {
         level: action.level,
         points: action.points,
         wordsLearned: action.wordsLearned,
+        progress: action.progress,
     });
 }
 

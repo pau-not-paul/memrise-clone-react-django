@@ -111,12 +111,16 @@ export const authSignup = (username, email, password) => {
                 dispatch(authSuccess(token));
                 dispatch(checkAuthTimeout(3600));
 
-                // Create profile
+                axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
+                axios.defaults.xsrfCookieName = "csrftoken";
+
                 axios.defaults.headers = {
                     "Content-Type": "application/json",
                     Authorization: `Token ${token}`,
                 };
-                axios.post(url + 'profiles-api/create/', { courses: [] });
+                axios.post(url + 'profiles-api/create/',
+                    { courses: [], 'progress': '{}' }
+                );
             })
             .catch(err => {
                 dispatch(authFail(err, false))

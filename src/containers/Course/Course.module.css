@@ -111,3 +111,50 @@ body {
     cursor: pointer;
     border-radius: 5px;
 }
+
+.ProgressDiv {
+    margin: 30px auto 30px auto;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 950px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.ProgressBar {
+	margin-top: 15px;
+	border-radius: 4px;
+	box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.06) inset;
+	background-color: #f7f7f7;
+	height: 10px;
+	margin-bottom: 4px;
+}
+
+.Progress {
+	height: 100%;
+	border-radius: 4px;
+	background-color: #ffda3e;
+}
+
+.LearnBtn {
+    margin-top: 15px;
+    max-width: 80px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #08b60b;
+    color: #fff;
+    padding: 7px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: -1px 2px 4px 0px rgba(0,0,0,0.16), inset 0px -2px 7px 0px rgba(0,0,0,0.1), inset 0px 2px 0px 0px rgba(255,255,255,0.3);
+    font-size: 0.9em;
+	user-select: none;
+}
+
+.CourseCompleted {
+    margin-top: 5px;
+    color: #83c53d;
+    font-weight: 600;
+    font-size: 0.9em;
+}
