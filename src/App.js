@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import Home from './containers/Home/Home';
 import Courses from './containers/Courses/Courses';
+import Learn from './containers/Learn/Learn';
 import Course from './containers/Course/Course';
 import CreateCourse from './containers/CreateCourse/CreateCourse';
 import EditCourse from './containers/EditCourse/EditCourse';
@@ -36,6 +37,7 @@ class App extends Component {
 					<Route path='/course/:courseId' exact component={Course} />
 					<Route path='/courses/:courseId' exact component={Courses} />
 					<Route path='/courses' exact component={Courses} />
+					<Route path='/learn/:courseId' exact component={Learn} />
 					<Route path='/home' exact component={Home} />
 					<Redirect path='/' exact to='/home' />
 					<Redirect path='/join' exact to='/home' />

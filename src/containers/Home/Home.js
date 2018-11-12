@@ -24,6 +24,7 @@ export class Home extends Component {
 	componentDidMount() {
 		document.title = 'Dashboard - Memrise';
 		this.loadCourses();
+		this.props.updateProfile();
 	}
 
 	componentWillReceiveProps(nextProps) {
@@ -42,7 +43,7 @@ export class Home extends Component {
 			} else {
 				for (let course of props.profile.courses) {
 					coursesHTML.push(
-						<CourseCard key={course.id} course={course} quitCourse={this.quitCourse} />
+						<CourseCard key={course.id} learn={this.learn} course={course} quitCourse={this.quitCourse} />
 					);
 				}
 			}
@@ -50,6 +51,10 @@ export class Home extends Component {
 				coursesHTML: coursesHTML
 			})
 		}
+	}
+
+	learn = (courseId) => {
+		this.props.history.push('/learn/' + courseId);
 	}
 
 	quitCourse = (courseId) => {

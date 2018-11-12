@@ -18,6 +18,12 @@ class CourseCard extends Component {
 		this.setState({ modal: false });
 	}
 
+	learn = () => {
+		if (Number(this.props.course.totalWords) !== 0) {
+			this.props.learn(this.props.course.id)
+		}
+	}
+
 	render() {
 		const course = this.props.course;
 
@@ -27,14 +33,16 @@ class CourseCard extends Component {
 			);
 		} else {
 			let progress = 0;
+			let nextUpButtonClasses = styles.NextUpButton + ' ' + styles.Disabled;
+
 			if (Number(course.totalWords) !== 0) {
 				progress = 100 * Number(course.wordsLearned) / Number(course.totalWords);
+				nextUpButtonClasses = (progress === 100) ? styles.NextUpButton + ' ' + styles.Disabled : styles.NextUpButton;
 			}
 			const progressWidth = { width: progress + '%' };
-			let nextUpButtonClasses = (progress === 100) ? styles.NextUpButton + ' ' + styles.Disabled : styles.NextUpButton;
 
 			// TODO TEMPORARY
-			nextUpButtonClasses = styles.NextUpButton + ' ' + styles.Disabled;
+			// nextUpButtonClasses = styles.NextUpButton + ' ' + styles.Disabled;
 			// TODO TEMPORARY
 
 			return (
@@ -79,7 +87,7 @@ class CourseCard extends Component {
 							<div className={styles.MoreButtonIcon} />
 							<div className={styles.MoreButtonText}>More</div>
 						</div>
-						<div className={nextUpButtonClasses}>
+						<div onClick={() => this.learn()} className={nextUpButtonClasses}>
 							<div className={styles.LearnIcon} />
 							<div className={styles.NextUpLabel}>
 								<div className={styles.NextUpText}>NEXT UP</div>

@@ -18,7 +18,7 @@ class Header extends Component {
 				<div className={styles.NavRow}>
 					<NavButton to='/home' isActive={url === 'home'}>Home</NavButton>
 					<NavButton to='/courses' isActive={url === 'courses' || url === 'course'}>Courses</NavButton>
-					<NavButton to='/groups' isActive={url === 'groups'}>Groups</NavButton>
+					{/* <NavButton to='/groups' isActive={url === 'groups'}>Groups</NavButton> */}
 				</div>
 				<Link to='/logout' className={styles.LogoutBtn}>Log out</Link>
 			</React.Fragment>

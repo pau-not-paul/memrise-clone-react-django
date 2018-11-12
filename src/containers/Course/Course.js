@@ -125,7 +125,7 @@ class Course extends Component {
 					<div className={styles.SecondHeader}>
 						<div className={styles.Row}>
 							{this.state.added ?
-								<div className={styles.RemoveButton} onClick={this.openModal}>Remove from my courses</div>
+								<div className={styles.RemoveButton} onClick={this.openModal}>Leave course</div>
 								:
 								<div className={styles.StartButton} onClick={() => this.updateCourse('add')}>Add to my courses</div>
 							}

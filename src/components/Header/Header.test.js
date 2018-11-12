@@ -20,7 +20,7 @@ describe('Header', () => {
 		expect(wrapper.contains(<Link to='/' className={styles.LogoWrapper} />)).toEqual(true);
 		expect(wrapper.contains(<NavButton to='/home' isActive>Home</NavButton>)).toEqual(true);
 		expect(wrapper.contains(<NavButton to='/courses' isActive={false}>Courses</NavButton>)).toEqual(true);
-		expect(wrapper.contains(<NavButton to='/groups' isActive={false}>Groups</NavButton>)).toEqual(true);
+		// expect(wrapper.contains(<NavButton to='/groups' isActive={false}>Groups</NavButton>)).toEqual(true);
 		expect(wrapper.contains(<Link to='/logout' className={styles.LogoutBtn}>Log out</Link>)).toEqual(true);
 	});
 

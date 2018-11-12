@@ -1,0 +1,60 @@
+.Content {
+    margin: auto;
+    max-width: 600px;
+    margin-top: 63px;
+    display: flex;
+    flex-direction: row;
+}
+
+.Main {
+    flex-grow: 1;
+    padding-top: 30px;
+}
+
+.Word {
+    font-size: 3em;
+    color: #3E3E3E;
+    font-weight: bold;
+    border-bottom: 1px solid #ddd;
+    padding: 20px;
+}
+
+.Description {
+    font-size: 1.2em;
+    color: #3E3E3E;
+    padding: 20px;
+}
+
+
+.RightColumn {
+    padding-top: 30px;
+    padding-left: 30px;
+}
+
+.NextButton {
+    height: 70px;
+    width: 40px;
+    padding: 15px;
+    color: #fff;
+    border: 1px solid #aaa;
+    background-color: #bbb;
+    text-shadow: 1px 1px 0 #777;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    user-select: none;
+}
+
+.NextButton:hover {
+    background-color: rgb(139, 197, 219);
+}
+
+.RightArrow {
+    width: 100%;
+    height: 25px;
+    background-image: url('../../../assets/icons/right-arrow.svg');
+    background-repeat: no-repeat;
+    background-position: 0% 100%;
+    margin: 10px 0;
+    margin-left: 7px;
+}
