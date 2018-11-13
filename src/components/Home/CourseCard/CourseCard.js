@@ -41,10 +41,6 @@ class CourseCard extends Component {
 			}
 			const progressWidth = { width: progress + '%' };
 
-			// TODO TEMPORARY
-			// nextUpButtonClasses = styles.NextUpButton + ' ' + styles.Disabled;
-			// TODO TEMPORARY
-
 			return (
 				<div className={styles.CourseCard}>
 					{this.state.modal ?
@@ -83,10 +79,10 @@ class CourseCard extends Component {
 						</div>
 					</div>
 					<div className={styles.CardBottom}>
-						<div className={styles.MoreButton + ' ' + styles.Disabled}>
+						{/* <div className={styles.MoreButton + ' ' + styles.Disabled}>
 							<div className={styles.MoreButtonIcon} />
 							<div className={styles.MoreButtonText}>More</div>
-						</div>
+						</div> */}
 						<div onClick={() => this.learn()} className={nextUpButtonClasses}>
 							<div className={styles.LearnIcon} />
 							<div className={styles.NextUpLabel}>

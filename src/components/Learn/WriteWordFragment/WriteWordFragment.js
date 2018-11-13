@@ -45,11 +45,9 @@ class WriteWordFragment extends Component {
 		let input = (<input ref={(input) => { this.input = input; }} value={this.state.inputValue} onChange={(e) => this.inputChange(e)} onKeyDown={(e) => this.onKeyDown(e)} className={styles.Input} />)
 
 		if (this.props.result === 'correct') {
-			const inputClasses = styles.Input + ' ' + styles.InputCorrect;
-			input = (<input ref={(input) => { this.input = input; }} readOnly value={this.state.inputValue} className={inputClasses} />)
+			input = (<input ref={(input) => { this.input = input; }} readOnly value={this.state.inputValue} className={styles.Input + ' ' + styles.InputCorrect} />)
 		} else if (this.props.result === 'wrong') {
-			const inputClasses = styles.Input + ' ' + styles.InputWrong;
-			input = (<input ref={(input) => { this.input = input; }} readOnly value={this.state.inputValue} className={inputClasses} />)
+			input = (<input ref={(input) => { this.input = input; }} readOnly value={this.state.inputValue} className={styles.Input + ' ' + styles.InputWrong} />)
 		}
 
 		return (

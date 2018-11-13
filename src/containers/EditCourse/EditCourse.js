@@ -43,13 +43,9 @@ class EditCourse extends Component {
 		axios.get(url + 'courses-api/' + this.state.courseId + '/')
 			.then(res => {
 				const course = res.data;
-
 				const words = JSON.parse(course.words);
-
 				course.words = words;
-
 				this.checkIfOwner(this.props, course);
-
 				this.setState({
 					course: course,
 				});
@@ -58,25 +54,20 @@ class EditCourse extends Component {
 
 	addNewWord = (word, description) => {
 		const words = this.state.course.words;
-
 		words.push({
 			word: word,
 			description: description
 		});
-
 		this.setState({ words: words });
 		this.pushWordsUpdate(words);
 	}
 
 	removeWord = (pair) => {
 		const words = this.state.course.words;
-
 		const index = words.indexOf(pair);
-
 		if (index !== -1) {
 			words.splice(index, 1);
 		}
-
 		this.setState({ words: words });
 		this.pushWordsUpdate(words);
 	}

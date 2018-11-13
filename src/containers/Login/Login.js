@@ -15,16 +15,10 @@ class Login extends Component {
 		errorMessage: null,
 	}
 
-	validateEmail(elementValue) {
-		var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-		return emailPattern.test(elementValue);
-	}
-
 	loginClick = () => {
 		let correct = true;
 
 		if (this.state.email === '') {
-			// if (!this.validateEmail(this.state.email)) {
 			correct = false;
 			this.setState({
 				emailInputClasses: styles.Input + ' ' + styles.Error,

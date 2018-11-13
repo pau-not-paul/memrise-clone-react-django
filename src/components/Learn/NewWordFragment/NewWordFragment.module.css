@@ -2,7 +2,7 @@
     margin: auto;
     padding: 0 15px;
     max-width: 600px;
-    margin-top: 63px;
+    padding-top: 63px;
     display: flex;
     flex-direction: row;
 }

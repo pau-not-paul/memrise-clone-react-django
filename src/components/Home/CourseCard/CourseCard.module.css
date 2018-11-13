@@ -244,6 +244,7 @@
 	color: rgb(70,70,70);
 	list-style-type: none;
 	cursor: pointer;
+	height: 35px;
 }
 
 .Tooltip > li:hover {
@@ -251,9 +252,13 @@
 }
 
 .TooltipLink {
-	line-height: 35px;
+	box-sizing: border-box;
 	padding: 0px 20px;
 	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	color: inherit;
 	text-decoration: none;
 }

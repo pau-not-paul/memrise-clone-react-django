@@ -38,7 +38,6 @@ class CreateCourse extends Component {
 			});
 		}
 
-		// correct = false;
 		if (correct) {
 			const url = (window.location.href.indexOf('heroku') !== -1)
 				? 'https://memclone-react-django.herokuapp.com/'
@@ -53,22 +52,17 @@ class CreateCourse extends Component {
 			};
 
 			axios.post(url + 'courses-api/create/', {
-				name: this.state.name,
-				description: this.state.description,
+				name: this.state.name.trim(),
+				description: this.state.description.trim(),
 				teaching: this.state.teaching,
 				description_language: this.state.descriptionLanguage,
 				owner: this.props.username,
 				words: '[]',
 			})
 				.then(res => {
-					this.goToCourses(res.data.id);
+					this.props.history.push('/course/' + res.data.id + '/edit');
 				});
-			// .catch(err => console.error(err));
 		}
-	}
-
-	goToCourses = (id) => {
-		this.props.history.push('/courses/' + id);
 	}
 
 	nameChange = (event) => {
@@ -130,7 +124,7 @@ class CreateCourse extends Component {
 					<div className={styles.Label}>For:</div>
 					<select onChange={this.forChange} defaultValue='English' className={styles.Select}>
 						{languages.map((l) => (
-							<option key={l} value={l}>{l} speakers</option> // value coming from prop
+							<option key={l} value={l}>{l} speakers</option>
 						))}
 					</select>
 					<div className={styles.Label}>Description:</div>

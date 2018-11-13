@@ -32,8 +32,7 @@ class Learn extends Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (this.props.profile.loading &&
-			nextProps.profile.loading !== this.props.profile.loading) {
+		if (this.props.profile.loading && !nextProps.profile.loading) {
 			this.loadProgress(nextProps);
 		}
 	}
@@ -50,6 +49,7 @@ class Learn extends Component {
 		const course = state.course;
 		const sessionWords = [];
 		const wordsLearned = [];
+
 		for (let pair of course.words) {
 			let score = state.progress.wordsInProgress[pair.word] || 0;
 			if (score !== GOAL_SCORE) {
@@ -110,52 +110,58 @@ class Learn extends Component {
 
 	nextClick = () => {
 		const turns = this.state.turns - 1;
-		if (turns === -1) {
-			this.props.history.push('/course/' + this.state.courseId);
-		} else if (turns === 0) {
+		if (turns === 0) {
 			this.setState({ turns: 0 });
 		} else {
-			const words = this.state.sessionWords;
-			words[this.state.index].score++;
+			const sessionWords = JSON.parse(JSON.stringify(this.state.sessionWords));
+			sessionWords[this.state.index].score++;
 			let idx = 0;
-			if (this.state.sessionWords.length > 1) {
+			if (sessionWords.length > 1) {
 				do {
-					idx = Math.floor((Math.random() * this.state.sessionWords.length));
+					idx = Math.floor((Math.random() * sessionWords.length));
 				} while (idx === this.state.index);
 			}
-			const currentWord = this.state.sessionWords[idx];
 			this.setState({
 				turns: turns,
 				index: idx,
-				words: words,
-				currentWord: currentWord
+				sessionWords: sessionWords,
+				currentWord: sessionWords[idx]
 			});
 		}
 	}
 
+	goToCourse = () => {
+		this.props.history.push('/course/' + this.state.courseId);
+	}
+
 	userWrote = (word) => {
 		let sessionWords = JSON.parse(JSON.stringify(this.state.sessionWords));
-		const wordsLearned = this.state.wordsLearned;
-		const pair = JSON.parse(JSON.stringify(this.state.currentWord));
+		const wordsLearned = [...this.state.wordsLearned];
+		const currentWord = {
+			word: this.state.currentWord.word,
+			description: this.state.currentWord.description,
+			score: this.state.currentWord.score
+		}
 
-		if (pair.word === word.trim()) {
-			pair.score++;
-			if (pair.score === GOAL_SCORE) {
-				wordsLearned.push(pair.word);
+		if (currentWord.word === word.trim()) {
+			currentWord.score++;
+			if (currentWord.score === GOAL_SCORE) {
+				wordsLearned.push(currentWord.word);
 				sessionWords.splice(this.state.index, 1);
 			}
 			this.postProgress(sessionWords, wordsLearned);
 			this.setState({
 				result: 'correct',
 				sessionWords: sessionWords,
-				wordsLearned: wordsLearned
+				wordsLearned: wordsLearned,
+				currentWord: currentWord
 			});
 		} else {
 			sessionWords[this.state.index].score = 0;
-			pair.score = 0;
-			this.setState({ result: 'wrong', sessionWords: sessionWords, currentWord: pair });
+			currentWord.score = 0;
+			this.setState({ result: 'wrong', sessionWords: sessionWords, currentWord: currentWord });
 		}
-		setTimeout(this.setResultToLearning, 2000);
+		setTimeout(this.setResultToLearning, 1000);
 	}
 
 	postProgress = (words, wordsLearned) => {
@@ -224,7 +230,7 @@ class Learn extends Component {
 				content = <WriteWordFragment result={this.state.result} userWrote={this.userWrote} pair={pair} />;
 			}
 			if (this.state.turns === 0) {
-				content = (<SessionComplete home={this.nextClick} />);
+				content = (<SessionComplete home={this.goToCourse} />);
 			}
 			return (
 				<React.Fragment>

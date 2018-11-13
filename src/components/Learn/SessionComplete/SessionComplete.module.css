@@ -12,8 +12,8 @@
 }
 
 .NextButton {
-    max-width: 100px;
-    padding: 15px 30px;
+    max-width: 110px;
+    padding: 15px 10px 15px 20px;
     color: #fff;
     border: 1px solid #aaa;
     background-color: #bbb;
@@ -47,6 +47,4 @@
     background-image: url('../../../assets/icons/right-arrow.svg');
     background-repeat: no-repeat;
     background-position: 0% 100%;
-    /* margin: 10px 0; */
-    /* margin-left: 7px; */
 }

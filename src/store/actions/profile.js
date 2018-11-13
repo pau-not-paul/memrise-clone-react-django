@@ -45,8 +45,14 @@ export const profileLoad = (token) => {
                 if (res.data) {
                     const obj = JSON.parse(res.data);
                     const courses = JSON.parse(obj.courses);
-                    const progress = JSON.parse(obj.progress);
-
+                    let progress = {};
+                    if (obj.progress !== '') {
+                        try {
+                            progress = JSON.parse(obj.progress);
+                        } catch (e) {
+                            progress = {};
+                        }
+                    }
                     let totalWordsLearned = 0;
                     const coursesF = [];
                     for (let c of courses) {

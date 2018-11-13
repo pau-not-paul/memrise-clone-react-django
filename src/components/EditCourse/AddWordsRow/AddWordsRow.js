@@ -10,9 +10,9 @@ class AddWordsRow extends Component {
 
 	confirm = () => {
 		if (this.state.word !== '' & this.state.description !== '') {
-			this.props.addNewWord(this.state.word, this.state.description);
+			this.props.addNewWord(this.state.word.trim(), this.state.description.trim());
 			this.setState({ word: '', description: '' });
-			this.focusFirstInput();
+			this.firstInput.focus();
 			window.scrollTo(0, document.body.scrollHeight);
 		}
 	}
@@ -28,15 +28,13 @@ class AddWordsRow extends Component {
 	onKeyDown = (event, firstInput) => {
 		if (event.key === 'Enter') {
 			if (firstInput) {
-				this.descriptionInput.focus();
+				if (this.state.word !== '') {
+					this.descriptionInput.focus();
+				}
 			} else {
 				this.confirm();
 			}
 		}
-	}
-
-	focusFirstInput = () => {
-		this.firstInput.focus();
 	}
 
 	render() {
