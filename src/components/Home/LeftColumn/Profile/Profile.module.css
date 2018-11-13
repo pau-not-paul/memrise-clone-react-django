@@ -9,29 +9,32 @@
 	background-image: linear-gradient(to top, #4f2f82, #7b609c);
 	background-image: url('../../../../assets/images/as_concentric_circles.svg');
 	background-position: 50% 35px;
-	background-size: 100% auto;
+	background-size: 200px;
 	background-repeat: no-repeat;
 	background-color: #7b609c;
 	height: 190px;
 	position: relative;
 }
 
+.ImageWrapper {
+	padding: 0 20px;
+	margin-top: 20px;
+	width: 100%;
+	max-height: 100px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	box-sizing: border-box;
+}
+
 .ProfileImage {
-	height: 50px;
-	width: 50px;
 	box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.24);
 	border-radius: 50%;
-	height: 100%;
-	width: 100%;
-	position: absolute;
 	z-index: 1;
-	top: 50px;
-	left: 50%;
-	margin-left: -50px;
-	margin-top: 30px;
-	height: 100px;
-	width: 100px;
 	content: url('../../../../assets/images/avatar-2.png');
+	width: 104px;
+	height: 104px;
+	object-fit: cover;
 }
 
 .UserName {

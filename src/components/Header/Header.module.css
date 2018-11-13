@@ -103,3 +103,9 @@
 	padding: 0 18px;
 	min-width: 100px;
 }
+
+@media only screen and (max-width: 400px) {
+	.LogoWrapper {
+		display: none;
+	}
+}

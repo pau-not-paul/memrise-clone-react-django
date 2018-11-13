@@ -47,6 +47,7 @@ export const profileLoad = (token) => {
                     const courses = JSON.parse(obj.courses);
                     const progress = JSON.parse(obj.progress);
 
+                    let totalWordsLearned = 0;
                     const coursesF = [];
                     for (let c of courses) {
                         const totalWords = JSON.parse(c.fields.words).length;
@@ -61,11 +62,11 @@ export const profileLoad = (token) => {
                             totalWords: totalWords,
                         };
                         coursesF.push(course);
+                        totalWordsLearned += wordsLearned;
                     }
                     const level = 1;
-                    const wordsLearned = 0;
-                    const points = 0;
-                    dispatch(profileLoaded(username, coursesF, level, wordsLearned, points, progress));
+                    const points = totalWordsLearned * 125;
+                    dispatch(profileLoaded(username, coursesF, level, totalWordsLearned, points, progress));
                 }
             });
     }

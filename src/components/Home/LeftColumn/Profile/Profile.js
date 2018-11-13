@@ -10,7 +10,9 @@ class Profile extends Component {
 				<div className={styles.ProfileHeader}>
 					<div className={styles.UserName}>{profile.username}</div>
 					<div className={styles.Level}>LEVEL {profile.level}</div>
-					<img className={styles.ProfileImage} alt="" />
+					<div className={styles.ImageWrapper}>
+						<img className={styles.ProfileImage} alt="" />
+					</div>
 				</div>
 				<div className={styles.ProfileStats}>
 					<div className={styles.StatsWrapper}>

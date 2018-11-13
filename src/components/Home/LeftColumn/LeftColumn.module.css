@@ -5,3 +5,9 @@
 	height: 100%;
 	width: 195px;
 }
+
+@media only screen and (max-width: 600px) {
+	.LeftColumn {
+		margin: 0 auto;
+	}
+}

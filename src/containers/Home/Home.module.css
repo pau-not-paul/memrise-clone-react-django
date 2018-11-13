@@ -37,15 +37,31 @@ body {
 }
 
 .ContainerMain {
-	width: 960px;
+	max-width: 960px;
 	height: 100%;
 	margin: auto;
+	padding: 0 10px;
 	display: flex;
 	flex-direction: row;
 }
 
 .RightColumn {
 	height: 100%;
-	width: 730px;
+	max-width: 730px;
 	margin-left: 35px;
+	flex-grow: 1;
+}
+
+@media only screen and (max-width: 600px) {
+	.Content {
+		padding-top: 80px;
+	}
+    .ContainerMain {
+		flex-direction: column;
+		justify-content: center;
+		align-content: center;
+	}
+	.RightColumn {
+		margin: 10px;
+	}
 }
