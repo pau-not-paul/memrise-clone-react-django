@@ -12,7 +12,6 @@ import * as profileActions from '../../store/actions/profile';
 const GOAL_SCORE = 2;
 
 class Learn extends Component {
-
 	state = {
 		courseId: this.props.match.params.courseId,
 		course: null,
@@ -24,7 +23,7 @@ class Learn extends Component {
 		sessionWords: null,
 		wordsLearned: [],
 		currentWord: null,
-	}
+	};
 
 	componentDidMount() {
 		this.loadCourse();
@@ -38,8 +37,7 @@ class Learn extends Component {
 	}
 
 	shouldComponentUpdate(nextProps, nextState) {
-		if (nextState.loading && nextState.progress
-			&& nextState.course) {
+		if (nextState.loading && nextState.progress && nextState.course) {
 			this.createLearningSession(nextState);
 		}
 		return true;
@@ -72,7 +70,7 @@ class Learn extends Component {
 				currentWord: currentWord,
 			});
 		}
-	}
+	};
 
 	loadProgress = (props = this.props) => {
 		if (!props.profile.loading) {
@@ -85,28 +83,28 @@ class Learn extends Component {
 			}
 			this.setState({ progress: progress });
 		}
-	}
+	};
 
 	loadCourse = () => {
-		const url = (window.location.href.indexOf('heroku') !== -1)
-			? 'https://memclone-react-django.herokuapp.com/'
-			: 'http://localhost:8000/';
+		const url =
+			window.location.href.indexOf('heroku') !== -1
+				? 'https://memclone-react-django.herokuapp.com/'
+				: 'http://localhost:8000/';
 
 		axios.defaults.xsrfCookieName = 'csrftoken';
 		axios.defaults.xsrfHeaderName = 'X-CSRFToken';
 
-		axios.get(url + 'courses-api/' + this.state.courseId + '/')
-			.then(res => {
-				const course = res.data;
-				course.words = JSON.parse(course.words);
-				if (course.words.length === 0) {
-					this.props.history.goBack();
-				}
-				this.setState({
-					course: course,
-				});
-			})
-	}
+		axios.get(url + 'courses-api/' + this.state.courseId + '/').then(res => {
+			const course = res.data;
+			course.words = JSON.parse(course.words);
+			if (course.words.length === 0) {
+				this.props.history.goBack();
+			}
+			this.setState({
+				course: course,
+			});
+		});
+	};
 
 	nextClick = () => {
 		const turns = this.state.turns - 1;
@@ -118,30 +116,30 @@ class Learn extends Component {
 			let idx = 0;
 			if (sessionWords.length > 1) {
 				do {
-					idx = Math.floor((Math.random() * sessionWords.length));
+					idx = Math.floor(Math.random() * sessionWords.length);
 				} while (idx === this.state.index);
 			}
 			this.setState({
 				turns: turns,
 				index: idx,
 				sessionWords: sessionWords,
-				currentWord: sessionWords[idx]
+				currentWord: sessionWords[idx],
 			});
 		}
-	}
+	};
 
 	goToCourse = () => {
 		this.props.history.push('/course/' + this.state.courseId);
-	}
+	};
 
-	userWrote = (word) => {
+	userWrote = word => {
 		let sessionWords = JSON.parse(JSON.stringify(this.state.sessionWords));
 		const wordsLearned = [...this.state.wordsLearned];
 		const currentWord = {
 			word: this.state.currentWord.word,
 			description: this.state.currentWord.description,
-			score: this.state.currentWord.score
-		}
+			score: this.state.currentWord.score,
+		};
 
 		if (currentWord.word === word.trim()) {
 			currentWord.score++;
@@ -154,15 +152,19 @@ class Learn extends Component {
 				result: 'correct',
 				sessionWords: sessionWords,
 				wordsLearned: wordsLearned,
-				currentWord: currentWord
+				currentWord: currentWord,
 			});
 		} else {
 			sessionWords[this.state.index].score = 0;
 			currentWord.score = 0;
-			this.setState({ result: 'wrong', sessionWords: sessionWords, currentWord: currentWord });
+			this.setState({
+				result: 'wrong',
+				sessionWords: sessionWords,
+				currentWord: currentWord,
+			});
 		}
 		setTimeout(this.setResultToLearning, 1000);
-	}
+	};
 
 	postProgress = (words, wordsLearned) => {
 		let progress = { wordsLearned: 0, wordsInProgress: {} };
@@ -176,24 +178,23 @@ class Learn extends Component {
 		const profileProgress = JSON.parse(JSON.stringify(this.props.profile.progress));
 		profileProgress[this.state.courseId] = progress;
 
-		const url = (window.location.href.indexOf('heroku') !== -1)
-			? 'https://memclone-react-django.herokuapp.com/'
-			: 'http://localhost:8000/';
+		const url =
+			window.location.href.indexOf('heroku') !== -1
+				? 'https://memclone-react-django.herokuapp.com/'
+				: 'http://localhost:8000/';
 
-		axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-		axios.defaults.xsrfCookieName = "csrftoken";
+		axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
+		axios.defaults.xsrfCookieName = 'csrftoken';
 
 		axios.defaults.headers = {
-			"Content-Type": "application/json",
+			'Content-Type': 'application/json',
 			Authorization: 'Token ' + this.props.token,
 		};
 
 		const progress_json = JSON.stringify(profileProgress);
 
-		axios.put(url + 'profiles-api/update-progress/',
-			progress_json
-		);
-	}
+		axios.put(url + 'profiles-api/update-progress/', progress_json);
+	};
 
 	setResultToLearning = () => {
 		if (this.state.result === 'wrong') {
@@ -207,7 +208,7 @@ class Learn extends Component {
 				let idx = 0;
 				if (sessionWords.length > 1) {
 					do {
-						idx = Math.floor((Math.random() * sessionWords.length));
+						idx = Math.floor(Math.random() * sessionWords.length);
 					} while (idx === this.state.index);
 				}
 				const currentWord = sessionWords[idx];
@@ -215,11 +216,11 @@ class Learn extends Component {
 					result: 'learning',
 					index: idx,
 					turns: turns,
-					currentWord: currentWord
+					currentWord: currentWord,
 				});
 			}
 		}
-	}
+	};
 
 	render() {
 		if (this.state.course && !this.state.loading) {
@@ -227,10 +228,12 @@ class Learn extends Component {
 
 			let content = <NewWordFragment next={this.nextClick} pair={pair} />;
 			if (pair.score > 0 || this.state.result === 'wrong') {
-				content = <WriteWordFragment result={this.state.result} userWrote={this.userWrote} pair={pair} />;
+				content = (
+					<WriteWordFragment result={this.state.result} userWrote={this.userWrote} pair={pair} />
+				);
 			}
 			if (this.state.turns === 0) {
-				content = (<SessionComplete home={this.goToCourse} />);
+				content = <SessionComplete home={this.goToCourse} />;
 			}
 			return (
 				<React.Fragment>
@@ -250,12 +253,12 @@ class Learn extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		profile: state.profile,
 		token: state.auth.token,
-	}
-}
+	};
+};
 
 const mapDispatchToProps = dispatch => {
 	return {
@@ -263,4 +266,7 @@ const mapDispatchToProps = dispatch => {
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Learn);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(Learn);

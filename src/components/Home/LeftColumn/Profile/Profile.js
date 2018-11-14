@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styles from './Profile.module.css';
 
 class Profile extends Component {
-
 	render() {
 		const profile = this.props.profile;
 		return (
@@ -19,7 +18,7 @@ class Profile extends Component {
 						<div className={styles.StatsNumber}>{profile.wordsLearned}</div>
 						<div className={styles.StatsLabel}>words learned</div>
 					</div>
-					<div className={styles.StatsSeparator}></div>
+					<div className={styles.StatsSeparator} />
 					<div className={styles.StatsWrapper}>
 						<div className={styles.StatsNumber}>{profile.points}</div>
 						<div className={styles.StatsLabel}>points</div>

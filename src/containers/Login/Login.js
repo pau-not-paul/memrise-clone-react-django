@@ -1,19 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../store/actions/auth'
+import * as actions from '../../store/actions/auth';
 
 import styles from './Login.module.css';
 import Header from '../../components/Header/Header';
 
 class Login extends Component {
-
 	state = {
 		email: '',
 		password: '',
 		emailInputClasses: styles.Input,
 		passwordInputClasses: styles.Input,
 		errorMessage: null,
-	}
+	};
 
 	loginClick = () => {
 		let correct = true;
@@ -34,21 +33,21 @@ class Login extends Component {
 		if (correct) {
 			this.login();
 		}
-	}
+	};
 
 	login = () => {
 		this.setState({ errorMessage: null });
 
 		this.props.onAuth(this.state.email, this.state.password);
-	}
+	};
 
-	onKeyDown = (event) => {
+	onKeyDown = event => {
 		if (event.key === 'Enter') {
 			this.loginClick();
 		}
-	}
+	};
 
-	emailChange = (event) => {
+	emailChange = event => {
 		if (this.state.emailInputClasses === styles.Input + ' ' + styles.Error) {
 			this.setState({
 				email: event.target.value,
@@ -57,9 +56,9 @@ class Login extends Component {
 		} else {
 			this.setState({ email: event.target.value });
 		}
-	}
+	};
 
-	passwordChange = (event) => {
+	passwordChange = event => {
 		if (this.state.passwordInputClasses === styles.Input + ' ' + styles.Error) {
 			this.setState({
 				password: event.target.value,
@@ -68,7 +67,7 @@ class Login extends Component {
 		} else {
 			this.setState({ password: event.target.value });
 		}
-	}
+	};
 
 	render() {
 		let errorMessage = this.state.errorMessage;
@@ -91,8 +90,15 @@ class Login extends Component {
 						<div className={styles.Label}>Username:</div>
 						<input onChange={this.emailChange} className={this.state.emailInputClasses} />
 						<div className={styles.Label}>Password:</div>
-						<input onChange={this.passwordChange} type='password' className={this.state.passwordInputClasses} onKeyDown={this.onKeyDown} />
-						<div onClick={this.loginClick} className={styles.LoginButton}>Login</div>
+						<input
+							onChange={this.passwordChange}
+							type="password"
+							className={this.state.passwordInputClasses}
+							onKeyDown={this.onKeyDown}
+						/>
+						<div onClick={this.loginClick} className={styles.LoginButton}>
+							Login
+						</div>
 					</div>
 				</div>
 			</React.Fragment>
@@ -100,17 +106,20 @@ class Login extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		loading: state.auth.loading,
 		error: state.auth.loginError,
-	}
-}
+	};
+};
 
 const mapDispatchToPropos = dispatch => {
 	return {
-		onAuth: (email, password) => dispatch(actions.authLogin(email, password))
-	}
-}
+		onAuth: (email, password) => dispatch(actions.authLogin(email, password)),
+	};
+};
 
-export default connect(mapStateToProps, mapDispatchToPropos)(Login);
+export default connect(
+	mapStateToProps,
+	mapDispatchToPropos,
+)(Login);

@@ -7,7 +7,6 @@ import styles from './Logout.module.css';
 import Spinner from '../../components/Spinner/Spinner';
 
 class Logout extends Component {
-
 	componentWillMount() {
 		this.props.logout();
 	}
@@ -23,8 +22,11 @@ class Logout extends Component {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		logout: () => dispatch(actions.logout())
-	}
-}
+		logout: () => dispatch(actions.logout()),
+	};
+};
 
-export default connect(null, mapDispatchToProps)(Logout);
+export default connect(
+	null,
+	mapDispatchToProps,
+)(Logout);

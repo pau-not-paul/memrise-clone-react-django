@@ -11,7 +11,7 @@ class NewWordFragment extends Component {
 				</div>
 				<div className={styles.RightColumn}>
 					<div onClick={this.props.next} className={styles.NextButton}>
-						<div className={styles.RightArrow}></div>
+						<div className={styles.RightArrow} />
 						<div>Next</div>
 					</div>
 				</div>

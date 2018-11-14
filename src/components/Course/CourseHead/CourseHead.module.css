@@ -1,62 +1,62 @@
 .PageHead {
-    min-height: 100px;
-    background-color: #825fb6;
-    background-image: linear-gradient(to bottom, #825fb6, #5f3b96);
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    border-bottom: solid 1px #e6e6e6;
-    color: white;
-    padding: 0 20px;
-    padding-top: 62px;
+	min-height: 100px;
+	background-color: #825fb6;
+	background-image: linear-gradient(to bottom, #825fb6, #5f3b96);
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	border-bottom: solid 1px #e6e6e6;
+	color: white;
+	padding: 0 20px;
+	padding-top: 62px;
 }
 
 .PageHeadRow {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    min-height: 100px;
-    width: 960px;
-    max-width: 960px;
-    margin: 10px 10px;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	min-height: 100px;
+	width: 960px;
+	max-width: 960px;
+	margin: 10px 10px;
 }
 
 .CourseDetails {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-right: 20px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	padding-right: 20px;
 }
 
 .SpinnerWrapper {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
 }
 
 .Title {
-    font-weight: 600;
-    font-size: 1.6em;
-    width: 100%;
+	font-weight: 600;
+	font-size: 1.6em;
+	width: 100%;
 }
 
 .Description {
-    margin: 10px 0;
+	margin: 10px 0;
 }
 
 .CreatedByDiv {
-    text-align: center;
+	text-align: center;
 }
 
 .CreatedBySpan {
-    font-size: 0.8em;
-    opacity: 0.7;
+	font-size: 0.8em;
+	opacity: 0.7;
 }
 
 .Owner {
-    width: 100%;
-    text-align: center;
-    font-weight: bold;
+	width: 100%;
+	text-align: center;
+	font-weight: bold;
 }

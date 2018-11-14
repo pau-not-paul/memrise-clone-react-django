@@ -4,8 +4,12 @@ import styles from './Header.module.css';
 
 export class NavButton extends Component {
 	render() {
-		let active = this.props.isActive ? ' ' + styles.ActiveButton : '';
-		return <Link to={this.props.to} className={styles.NavButton + active}>{this.props.children}</Link>
+		const active = this.props.isActive ? ` ${styles.ActiveButton}` : '';
+		return (
+			<Link to={this.props.to} className={styles.NavButton + active}>
+				{this.props.children}
+			</Link>
+		);
 	}
 }
 
@@ -16,22 +20,33 @@ class Header extends Component {
 		let buttons = (
 			<React.Fragment>
 				<div className={styles.NavRow}>
-					<NavButton to='/home' isActive={url === 'home'}>Home</NavButton>
-					<NavButton to='/courses' isActive={url === 'courses' || url === 'course'}>Courses</NavButton>
+					<NavButton to="/home" isActive={url === 'home'}>
+						Home
+					</NavButton>
+					<NavButton to="/courses" isActive={url === 'courses' || url === 'course'}>
+						Courses
+					</NavButton>
 					{/* <NavButton to='/groups' isActive={url === 'groups'}>Groups</NavButton> */}
 				</div>
-				<Link to='/logout' className={styles.LogoutBtn}>Log out</Link>
+				<Link to="/logout" className={styles.LogoutBtn}>
+					Log out
+				</Link>
 			</React.Fragment>
 		);
 
 		if (url === 'login' || url === 'join') {
-			let loginBtnActive = url === 'login' ? ' ' + styles.ActiveButton : '';
-			let signUpBtnActive = url === 'join' ? ' ' + styles.ActiveButton : ' ' + styles.SignUpPurple;
+			const loginBtnActive = url === 'login' ? ` ${styles.ActiveButton}` : '';
+			const signUpBtnActive =
+				url === 'join' ? ` ${styles.ActiveButton}` : ` ${styles.SignUpPurple}`;
 
 			buttons = (
 				<div className={styles.AuthNavButtonsDiv}>
-					<Link to='/login' className={styles.NavButton + loginBtnActive}>Login</Link>
-					<Link to='/join' className={styles.NavButton + ' ' + styles.LRMargin + signUpBtnActive}>Sign up</Link>
+					<Link to="/login" className={styles.NavButton + loginBtnActive}>
+						Login
+					</Link>
+					<Link to="/join" className={`${styles.NavButton} ${styles.LRMargin}${signUpBtnActive}`}>
+						Sign up
+					</Link>
 				</div>
 			);
 		}
@@ -39,7 +54,7 @@ class Header extends Component {
 		return (
 			<div className={styles.Header}>
 				<div className={styles.HeaderRow}>
-					<Link to='/' className={styles.LogoWrapper} />
+					<Link to="/" className={styles.LogoWrapper} />
 					{buttons}
 				</div>
 			</div>

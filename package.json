@@ -1,38 +1,45 @@
 {
-  "name": "memrise-clone",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.18.0",
-    "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.7.0",
-    "react": "^16.6.0",
-    "react-dom": "^16.6.0",
-    "react-redux": "^5.1.0",
-    "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.0",
-    "react-test-renderer": "^16.6.1",
-    "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "postinstall": "npm run build"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
-  "engines": {
-    "node": "8.11.3",
-    "npm": "5.6.0"
-  }
+	"name": "memrise-clone",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"axios": "^0.18.0",
+		"enzyme": "^3.7.0",
+		"enzyme-adapter-react-16": "^1.7.0",
+		"prop-types": "^15.6.2",
+		"react": "^16.6.0",
+		"react-dom": "^16.6.0",
+		"react-redux": "^5.1.0",
+		"react-router-dom": "^4.3.1",
+		"react-scripts": "^2.1.0",
+		"react-test-renderer": "^16.6.1",
+		"redux": "^4.0.1",
+		"redux-thunk": "^2.3.0"
+	},
+	"scripts": {
+		"start": "react-scripts start",
+		"build": "react-scripts build",
+		"test": "react-scripts test",
+		"eject": "react-scripts eject",
+		"postinstall": "npm run build"
+	},
+	"eslintConfig": {
+		"extends": "react-app"
+	},
+	"browserslist": [
+		">0.2%",
+		"not dead",
+		"not ie <= 11",
+		"not op_mini all"
+	],
+	"engines": {
+		"node": "8.11.3",
+		"npm": "5.6.0"
+	},
+	"devDependencies": {
+		"eslint": "^5.9.0",
+		"eslint-config-prettier": "^3.3.0",
+		"eslint-plugin-prettier": "^3.0.0",
+		"prettier": "^1.15.2"
+	}
 }

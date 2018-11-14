@@ -9,9 +9,7 @@ class Header extends Component {
 					<div className={styles.LeftColumn}>
 						<div className={styles.LearningIcon} />
 					</div>
-					<div className={styles.CenterColumn}>
-						{this.props.course.name}. Learn new words
-					</div>
+					<div className={styles.CenterColumn}>{this.props.course.name}. Learn new words</div>
 					<div className={styles.RightColumn}>
 						<div onClick={this.props.close} className={styles.CloseButton} />
 					</div>

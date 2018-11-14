@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styles from './WordsBlock.module.css';
 
 class WordsBlock extends Component {
-
 	render() {
 		return (
 			<div className={styles.WordsBlock}>
@@ -18,9 +17,9 @@ class WordsBlock extends Component {
 						<div className={styles.Row}>
 							<div className={styles.Column}>{p.word}</div>
 							<div className={styles.Column}>{p.description}</div>
-							{this.props.removeWord ?
-								<div className={styles.RemoveBtn} onClick={() => this.props.removeWord(p)} /> : null
-							}
+							{this.props.removeWord ? (
+								<div className={styles.RemoveBtn} onClick={() => this.props.removeWord(p)} />
+							) : null}
 						</div>
 					</div>
 				))}

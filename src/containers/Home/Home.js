@@ -11,7 +11,6 @@ import CourseCard from '../../components/Home/CourseCard/CourseCard';
 import * as profileActions from '../../store/actions/profile';
 
 export class Home extends Component {
-
 	state = {
 		coursesHTML: (
 			<React.Fragment>
@@ -19,7 +18,7 @@ export class Home extends Component {
 				<CourseCard loading />
 			</React.Fragment>
 		),
-	}
+	};
 
 	componentDidMount() {
 		document.title = 'Dashboard - Memrise';
@@ -37,44 +36,47 @@ export class Home extends Component {
 		if (!props.profile.loading) {
 			let coursesHTML = [];
 			if (props.profile.courses.length === 0) {
-				coursesHTML = (
-					<Welcome />
-				);
+				coursesHTML = <Welcome />;
 			} else {
 				for (let course of props.profile.courses) {
 					coursesHTML.push(
-						<CourseCard key={course.id} learn={this.learn} course={course} quitCourse={this.quitCourse} />
+						<CourseCard
+							key={course.id}
+							learn={this.learn}
+							course={course}
+							quitCourse={this.quitCourse}
+						/>,
 					);
 				}
 			}
 			this.setState({
-				coursesHTML: coursesHTML
-			})
+				coursesHTML: coursesHTML,
+			});
 		}
-	}
+	};
 
-	learn = (courseId) => {
+	learn = courseId => {
 		this.props.history.push('/learn/' + courseId);
-	}
+	};
 
-	quitCourse = (courseId) => {
-		axios.defaults.xsrfHeaderName = "X-CSRFTOKEN";
-		axios.defaults.xsrfCookieName = "csrftoken";
+	quitCourse = courseId => {
+		axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
+		axios.defaults.xsrfCookieName = 'csrftoken';
 
 		axios.defaults.headers = {
-			"Content-Type": "application/json",
+			'Content-Type': 'application/json',
 			Authorization: `Token ${this.props.token}`,
 		};
 
-		const url = (window.location.href.indexOf('heroku') !== -1)
-			? 'https://memclone-react-django.herokuapp.com/'
-			: 'http://127.0.0.1:8000/';
+		const url =
+			window.location.href.indexOf('heroku') !== -1
+				? 'https://memclone-react-django.herokuapp.com/'
+				: 'http://127.0.0.1:8000/';
 
-		axios.post(url + 'profiles-api/remove/' + courseId + '/')
-			.then(res => {
-				this.props.updateProfile();
-			});
-	}
+		axios.post(url + 'profiles-api/remove/' + courseId + '/').then(res => {
+			this.props.updateProfile();
+		});
+	};
 
 	render() {
 		return (
@@ -90,9 +92,7 @@ export class Home extends Component {
 				<div className={styles.Content}>
 					<div className={styles.ContainerMain}>
 						<LeftColumn profile={this.props.profile} />
-						<div className={styles.RightColumn}>
-							{this.state.coursesHTML}
-						</div>
+						<div className={styles.RightColumn}>{this.state.coursesHTML}</div>
 					</div>
 				</div>
 			</React.Fragment>
@@ -100,17 +100,20 @@ export class Home extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		profile: state.profile,
 		token: state.auth.token,
-	}
-}
-
-const mapDispatchToProps = dispatch => {
-	return {
-		updateProfile: () => dispatch(profileActions.profileLoad())
 	};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+const mapDispatchToProps = dispatch => {
+	return {
+		updateProfile: () => dispatch(profileActions.profileLoad()),
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(Home);

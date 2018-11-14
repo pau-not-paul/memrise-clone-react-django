@@ -5,12 +5,10 @@ class SessionComplete extends Component {
 	render() {
 		return (
 			<React.Fragment>
-				<div className={styles.Content}>
-					Session complete!
-				</div>
+				<div className={styles.Content}>Session complete!</div>
 				<div onClick={this.props.home} className={styles.NextButton}>
 					<div className={styles.BtnText}>Course</div>
-					<div className={styles.RightArrow}></div>
+					<div className={styles.RightArrow} />
 				</div>
 			</React.Fragment>
 		);

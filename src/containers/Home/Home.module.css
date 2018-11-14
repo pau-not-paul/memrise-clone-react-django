@@ -1,67 +1,67 @@
 .PageHead {
-	padding-top: 62px;
-	background-color: white;
-	height: 74px;
-	display: flex;
-	justify-content: center;
-	border-bottom: solid 1px #e6e6e6;
+  padding-top: 62px;
+  background-color: white;
+  height: 74px;
+  display: flex;
+  justify-content: center;
+  border-bottom: solid 1px #e6e6e6;
 }
 
 .PageHeadRow {
-	height: 100%;
-	width: 960px;
-	max-width: 960px;
-	margin: 0 30px;
+  height: 100%;
+  width: 960px;
+  max-width: 960px;
+  margin: 0 30px;
 }
 
 .Title {
-	font-size: 25px;
-	font-weight: bold;
-	color: #3E3E3E;
-	height: 100%;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
+  font-size: 25px;
+  font-weight: bold;
+  color: #3e3e3e;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .Content {
-	box-sizing: border-box;
-	padding: 26px 0;
-	padding-top: 80px;
-	width: 100%;
-	background: transparent;
+  box-sizing: border-box;
+  padding: 26px 0;
+  padding-top: 80px;
+  width: 100%;
+  background: transparent;
 }
 
 body {
-	background-color: #f5f5f5;
+  background-color: #f5f5f5;
 }
 
 .ContainerMain {
-	max-width: 960px;
-	height: 100%;
-	margin: auto;
-	padding: 0 10px;
-	display: flex;
-	flex-direction: row;
+  max-width: 960px;
+  height: 100%;
+  margin: auto;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: row;
 }
 
 .RightColumn {
-	height: 100%;
-	max-width: 730px;
-	margin-left: 1%;
-	flex-grow: 1;
+  height: 100%;
+  max-width: 730px;
+  margin-left: 1%;
+  flex-grow: 1;
 }
 
 @media only screen and (max-width: 600px) {
-	.Content {
-		padding-top: 80px;
-	}
-    .ContainerMain {
-		flex-direction: column;
-		justify-content: center;
-		align-content: center;
-	}
-	.RightColumn {
-		margin: 10px;
-	}
+  .Content {
+    padding-top: 80px;
+  }
+  .ContainerMain {
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+  }
+  .RightColumn {
+    margin: 10px;
+  }
 }

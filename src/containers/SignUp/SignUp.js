@@ -6,7 +6,6 @@ import styles from './SignUp.module.css';
 import Header from '../../components/Header/Header';
 
 class SignUp extends Component {
-
 	state = {
 		userName: '',
 		email: '',
@@ -17,7 +16,7 @@ class SignUp extends Component {
 		passwordInputClasses: styles.Input,
 		password2InputClasses: styles.Input,
 		errorMessage: null,
-	}
+	};
 
 	validateEmail(elementValue) {
 		var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -47,11 +46,7 @@ class SignUp extends Component {
 		}
 		if (this.state.password2 !== this.state.password) {
 			correct = false;
-			const errorMessage = (
-				<div className={styles.ErrorMessage}>
-					Passwords don't match
-				</div>
-			);
+			const errorMessage = <div className={styles.ErrorMessage}>Passwords don't match</div>;
 
 			this.setState({
 				password2InputClasses: styles.Input + ' ' + styles.Error,
@@ -62,20 +57,20 @@ class SignUp extends Component {
 		if (correct) {
 			this.signUp();
 		}
-	}
+	};
 
 	signUp = () => {
 		this.setState({ errorMessage: null });
 		this.props.onAuth(this.state.userName, this.state.email, this.state.password);
-	}
+	};
 
-	onKeyDown = (event) => {
+	onKeyDown = event => {
 		if (event.key === 'Enter') {
 			this.loginClick();
 		}
-	}
+	};
 
-	userNameChange = (event) => {
+	userNameChange = event => {
 		if (this.state.userNameInputClasses === styles.Input + ' ' + styles.Error) {
 			this.setState({
 				userName: event.target.value,
@@ -84,9 +79,9 @@ class SignUp extends Component {
 		} else {
 			this.setState({ userName: event.target.value });
 		}
-	}
+	};
 
-	emailChange = (event) => {
+	emailChange = event => {
 		if (this.state.emailInputClasses === styles.Input + ' ' + styles.Error) {
 			this.setState({
 				email: event.target.value,
@@ -95,9 +90,9 @@ class SignUp extends Component {
 		} else {
 			this.setState({ email: event.target.value });
 		}
-	}
+	};
 
-	passwordChange = (event) => {
+	passwordChange = event => {
 		if (this.state.passwordInputClasses === styles.Input + ' ' + styles.Error) {
 			this.setState({
 				password: event.target.value,
@@ -110,9 +105,9 @@ class SignUp extends Component {
 				errorMessage: null,
 			});
 		}
-	}
+	};
 
-	password2Change = (event) => {
+	password2Change = event => {
 		if (this.state.password2InputClasses === styles.Input + ' ' + styles.Error) {
 			this.setState({
 				password2: event.target.value,
@@ -125,16 +120,17 @@ class SignUp extends Component {
 				errorMessage: null,
 			});
 		}
-	}
+	};
 
 	render() {
 		let errorMessage = this.state.errorMessage;
 
 		if (this.props.error) {
 			let response = 'Error';
-			if (this.props.error.response
-				&& this.props.error.response.request
-				&& this.props.error.response.request.response
+			if (
+				this.props.error.response &&
+				this.props.error.response.request &&
+				this.props.error.response.request.response
 			) {
 				response = this.props.error.response.request.response;
 			}
@@ -146,11 +142,7 @@ class SignUp extends Component {
 				}
 			}
 
-			errorMessage = (
-				<div className={styles.ErrorMessage}>
-					{error}
-				</div>
-			);
+			errorMessage = <div className={styles.ErrorMessage}>{error}</div>;
 		}
 
 		return (
@@ -161,14 +153,34 @@ class SignUp extends Component {
 						<div className={styles.LoginTitle}>Sign up</div>
 						{errorMessage}
 						<div className={styles.Label}>Email:</div>
-						<input name='email' onChange={this.emailChange} className={this.state.emailInputClasses} />
+						<input
+							name="email"
+							onChange={this.emailChange}
+							className={this.state.emailInputClasses}
+						/>
 						<div className={styles.Label}>Username:</div>
-						<input name='username' onChange={this.userNameChange} className={this.state.userNameInputClasses} />
+						<input
+							name="username"
+							onChange={this.userNameChange}
+							className={this.state.userNameInputClasses}
+						/>
 						<div className={styles.Label}>Password:</div>
-						<input name='password' onChange={this.passwordChange} type='password' className={this.state.passwordInputClasses} />
+						<input
+							name="password"
+							onChange={this.passwordChange}
+							type="password"
+							className={this.state.passwordInputClasses}
+						/>
 						<div className={styles.Label}>Repeat password:</div>
-						<input onChange={this.password2Change} type='password' className={this.state.password2InputClasses} onKeyDown={this.onKeyDown} />
-						<div onClick={this.loginClick} className={styles.LoginButton}>Login</div>
+						<input
+							onChange={this.password2Change}
+							type="password"
+							className={this.state.password2InputClasses}
+							onKeyDown={this.onKeyDown}
+						/>
+						<div onClick={this.loginClick} className={styles.LoginButton}>
+							Login
+						</div>
 					</div>
 				</div>
 			</React.Fragment>
@@ -176,17 +188,20 @@ class SignUp extends Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		loading: state.auth.loading,
 		error: state.auth.signupError,
-	}
-}
+	};
+};
 
 const mapDispatchToProps = dispatch => {
 	return {
-		onAuth: (username, email, password) => dispatch(actions.authSignup(username, email, password))
-	}
-}
+		onAuth: (username, email, password) => dispatch(actions.authSignup(username, email, password)),
+	};
+};
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps,
+)(SignUp);
