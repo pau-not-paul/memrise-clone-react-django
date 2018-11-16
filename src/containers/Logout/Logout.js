@@ -7,7 +7,7 @@ import styles from './Logout.module.css';
 import Spinner from '../../components/Spinner/Spinner';
 
 class Logout extends Component {
-	componentWillMount() {
+	componentDidMount() {
 		this.props.logout();
 	}
 

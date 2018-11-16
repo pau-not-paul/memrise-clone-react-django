@@ -16,7 +16,6 @@ class Login extends Component {
 
 	loginClick = () => {
 		let correct = true;
-
 		if (this.state.email === '') {
 			correct = false;
 			this.setState({
@@ -29,7 +28,6 @@ class Login extends Component {
 				passwordInputClasses: styles.Input + ' ' + styles.Error,
 			});
 		}
-
 		if (correct) {
 			this.login();
 		}
@@ -37,7 +35,6 @@ class Login extends Component {
 
 	login = () => {
 		this.setState({ errorMessage: null });
-
 		this.props.onAuth(this.state.email, this.state.password);
 	};
 
@@ -47,25 +44,15 @@ class Login extends Component {
 		}
 	};
 
-	emailChange = event => {
-		if (this.state.emailInputClasses === styles.Input + ' ' + styles.Error) {
+	inputChange = event => {
+		const name = event.target.name;
+		if (this.state[name + 'InputClasses'] === styles.Input + ' ' + styles.Error) {
 			this.setState({
-				email: event.target.value,
-				emailInputClasses: styles.Input,
+				[name]: event.target.value,
+				[name + 'InputClasses']: styles.Input,
 			});
 		} else {
-			this.setState({ email: event.target.value });
-		}
-	};
-
-	passwordChange = event => {
-		if (this.state.passwordInputClasses === styles.Input + ' ' + styles.Error) {
-			this.setState({
-				password: event.target.value,
-				passwordInputClasses: styles.Input,
-			});
-		} else {
-			this.setState({ password: event.target.value });
+			this.setState({ [name]: event.target.value });
 		}
 	};
 
@@ -88,10 +75,15 @@ class Login extends Component {
 						<div className={styles.LoginTitle}>Login</div>
 						{errorMessage}
 						<div className={styles.Label}>Username:</div>
-						<input onChange={this.emailChange} className={this.state.emailInputClasses} />
+						<input
+							name="email"
+							onChange={this.inputChange}
+							className={this.state.emailInputClasses}
+						/>
 						<div className={styles.Label}>Password:</div>
 						<input
-							onChange={this.passwordChange}
+							name="password"
+							onChange={this.inputChange}
 							type="password"
 							className={this.state.passwordInputClasses}
 							onKeyDown={this.onKeyDown}

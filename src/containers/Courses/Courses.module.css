@@ -2,27 +2,27 @@
 	padding-top: 62px;
 	background-color: white;
 	height: 74px;
-    display: flex;
-    flex-direction: row;
+	display: flex;
+	flex-direction: row;
 	justify-content: center;
 	border-bottom: solid 1px #e6e6e6;
 }
 
 .PageHeadRow {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 	height: 100%;
 	width: 960px;
-    max-width: 960px;
-    margin: 0 30px;
+	max-width: 960px;
+	margin: 0 30px;
 }
 
 .Title {
 	font-size: 25px;
 	font-weight: bold;
-	color: #3E3E3E;
+	color: #3e3e3e;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
@@ -30,20 +30,21 @@
 }
 
 .CreateButton {
-    text-decoration: none;
-    background-color: #08b60b;
-    border: 1px solid #069108;
-    color: #fff;
-    padding: 7px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    box-shadow: -1px 2px 4px 0px rgba(0,0,0,0.16), inset 0px -2px 7px 0px rgba(0,0,0,0.1), inset 0px 2px 0px 0px rgba(255,255,255,0.3);
-    font-size: 0.9em;
+	text-decoration: none;
+	background-color: #08b60b;
+	border: 1px solid #069108;
+	color: #fff;
+	padding: 7px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	box-shadow: -1px 2px 4px 0px rgba(0, 0, 0, 0.16), inset 0px -2px 7px 0px rgba(0, 0, 0, 0.1),
+		inset 0px 2px 0px 0px rgba(255, 255, 255, 0.3);
+	font-size: 0.9em;
 	user-select: none;
 }
 
 .CreateButton:hover {
-    background-color: #10c010;
+	background-color: #10c010;
 }
 
 .Content {
@@ -53,13 +54,9 @@
 	background: transparent;
 }
 
-body {
-	background-color: #f5f5f5;
-}
-
 .ContainerMain {
-    width: 960px;
-    max-width: 100%;    
+	width: 960px;
+	max-width: 100%;
 	height: 100%;
 	margin: auto;
 	display: flex;
@@ -68,54 +65,56 @@ body {
 
 .RightColumn {
 	height: 100%;
-    width: 100%;
-    max-width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+	width: 100%;
+	max-width: 100%;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 .CourseCard {
-    width: 200px;
-    height: 100px;
-    background-color: white;
-    box-shadow: rgba(0,0,0,0.08) 0 1px 2px;
-    border: 1px solid #e4e4e4;
-    border-radius: 10px;
-    margin: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
-    text-decoration: none;
-    color: #3E3E3E;
-    font-weight: bold;
-    font-size: 1.1em;
-    padding: 0 20px;
-    box-sizing: border-box;
+	width: 200px;
+	height: 100px;
+	background-color: white;
+	box-shadow: rgba(0, 0, 0, 0.08) 0 1px 2px;
+	border: 1px solid #e4e4e4;
+	border-radius: 10px;
+	margin: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	cursor: pointer;
+	user-select: none;
+	text-decoration: none;
+	color: #3e3e3e;
+	font-weight: bold;
+	font-size: 1.1em;
+	padding: 0 20px;
+	box-sizing: border-box;
 }
 
 .CourseCard:hover {
-    box-shadow: rgba(0,0,0,0.3) 0 1px 2px;
+	box-shadow: rgba(0, 0, 0, 0.3) 0 1px 2px;
 }
 
 .JustCreated {
-    animation: changebackground 2s linear infinite;
-    background-color: rgba(255,200,200,0.5);
+	animation: changebackground 2s linear infinite;
+	background-color: rgba(255, 200, 200, 0.5);
 }
 
 @keyframes changebackground {
-    50% {background-color: rgba(255,200,200,0.8);}
+	50% {
+		background-color: rgba(255, 200, 200, 0.8);
+	}
 }
 
 @media only screen and (max-width: 600px) {
-    .Content {
-        padding-top: 10px;
-    }
+	.Content {
+		padding-top: 10px;
+	}
 	.CourseCard {
-        width: 80%;
-        margin: 10px 20px;
+		width: 80%;
+		margin: 10px 20px;
 	}
 }

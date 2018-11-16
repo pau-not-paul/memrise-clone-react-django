@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import axios from 'axios';
 
@@ -11,6 +12,10 @@ import CourseCard from '../../components/Home/CourseCard/CourseCard';
 import * as profileActions from '../../store/actions/profile';
 
 export class Home extends Component {
+	static propTypes = {
+		profile: PropTypes.object.isRequired,
+	};
+
 	state = {
 		coursesHTML: (
 			<React.Fragment>
@@ -23,12 +28,11 @@ export class Home extends Component {
 	componentDidMount() {
 		document.title = 'Dashboard - Memrise';
 		this.loadCourses();
-		this.props.updateProfile();
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (this.props.profile.courses !== nextProps.profile.courses) {
-			this.loadCourses(nextProps);
+	componentDidUpdate(prevProps, prevState) {
+		if (this.props.profile.courses !== prevProps.profile.courses) {
+			this.loadCourses();
 		}
 	}
 

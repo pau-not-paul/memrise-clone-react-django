@@ -30,12 +30,6 @@
 	padding-right: 20px;
 }
 
-.SpinnerWrapper {
-	width: 100%;
-	display: flex;
-	flex-direction: column;
-}
-
 .Title {
 	font-weight: 600;
 	font-size: 1.6em;

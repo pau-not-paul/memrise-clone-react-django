@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import styles from './EditCourse.module.css';
 import Header from '../../components/Header/Header';
-import Spinner from '../../components/Spinner/Spinner';
 import EditingNavBar from '../../components/EditCourse/EditingNavBar/EditingNavBar';
 import AddWordsRow from '../../components/EditCourse/AddWordsRow/AddWordsRow';
-import WordsBlock from '../../components/Course/WordsBlock/WordsBlock';
+import WordsTable from '../../components/Course/WordsTable/WordsTable';
 import CourseHead from '../../components/Course/CourseHead/CourseHead';
 
 class EditCourse extends Component {
@@ -19,9 +17,10 @@ class EditCourse extends Component {
 		this.loadCourse();
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (this.state.course && this.props.profile.username !== nextProps.profile.username) {
-			this.checkIfOwner(nextProps, this.state.course);
+	componentDidUpdate(prevProps, prevState) {
+		if (!this.checkIfOwnerDone && this.state.course && this.props.profile.username) {
+			this.checkIfOwnerDone = true;
+			this.checkIfOwner(this.state.props, this.state.course);
 		}
 	}
 
@@ -91,31 +90,19 @@ class EditCourse extends Component {
 	};
 
 	render() {
-		if (this.state.course) {
-			return (
-				<React.Fragment>
-					<Header url={this.props.match.url} />
-					<CourseHead course={this.state.course} />
-					<EditingNavBar goBack={() => this.props.history.goBack()} />
-					<WordsBlock removeWord={this.removeWord} course={this.state.course}>
+		const course = this.state.course;
+		return (
+			<React.Fragment>
+				<Header url={this.props.match.url} />
+				<CourseHead {...course} />
+				<EditingNavBar goBack={() => this.props.history.push('/course/' + this.state.courseId)} />
+				{course && (
+					<WordsTable removeWord={this.removeWord} {...this.state.course}>
 						<AddWordsRow addNewWord={this.addNewWord} />
-					</WordsBlock>
-				</React.Fragment>
-			);
-		} else {
-			return (
-				<React.Fragment>
-					<Header url={this.props.match.url} />
-					<div className={styles.PageHead}>
-						<div className={styles.PageHeadRow}>
-							<div className={styles.SpinnerWrapper}>
-								<Spinner />
-							</div>
-						</div>
-					</div>
-				</React.Fragment>
-			);
-		}
+					</WordsTable>
+				)}
+			</React.Fragment>
+		);
 	}
 }
 
@@ -126,13 +113,4 @@ const mapStateToProps = state => {
 	};
 };
 
-const mapDispatchToProps = dispatch => {
-	return {
-		// updateProfile: () => dispatch(profileActions.profileLoad())
-	};
-};
-
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps,
-)(EditCourse);
+export default connect(mapStateToProps)(EditCourse);

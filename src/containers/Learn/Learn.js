@@ -27,20 +27,19 @@ class Learn extends Component {
 
 	componentDidMount() {
 		this.loadCourse();
-		this.props.updateProfile();
-	}
-
-	componentWillReceiveProps(nextProps) {
-		if (this.props.profile.loading && !nextProps.profile.loading) {
-			this.loadProgress(nextProps);
+		if (!this.props.profile.loading) {
+			this.loadProgress();
 		}
 	}
 
-	shouldComponentUpdate(nextProps, nextState) {
-		if (nextState.loading && nextState.progress && nextState.course) {
-			this.createLearningSession(nextState);
+	componentDidUpdate(prevProps, prevState) {
+		if (!this.props.profile.loading && !prevProps.profile.loading) {
+			this.loadProgress();
 		}
-		return true;
+		if (!this.sessionCreated && this.state.progress && this.state.course) {
+			this.sessionCreated = true;
+			this.createLearningSession();
+		}
 	}
 
 	createLearningSession = (state = this.state) => {
@@ -193,7 +192,9 @@ class Learn extends Component {
 
 		const progress_json = JSON.stringify(profileProgress);
 
-		axios.put(url + 'profiles-api/update-progress/', progress_json);
+		axios
+			.put(url + 'profiles-api/update-progress/', progress_json)
+			.then(res => this.props.updateProfile());
 	};
 
 	setResultToLearning = () => {
@@ -226,7 +227,7 @@ class Learn extends Component {
 		if (this.state.course && !this.state.loading) {
 			const pair = this.state.currentWord;
 
-			let content = <NewWordFragment next={this.nextClick} pair={pair} />;
+			let content = <NewWordFragment next={this.nextClick} {...pair} />;
 			if (pair.score > 0 || this.state.result === 'wrong') {
 				content = (
 					<WriteWordFragment result={this.state.result} userWrote={this.userWrote} pair={pair} />
@@ -237,7 +238,7 @@ class Learn extends Component {
 			}
 			return (
 				<React.Fragment>
-					<Header close={this.props.history.goBack} course={this.state.course} />
+					<Header close={this.props.history.goBack} name={this.state.course.name} />
 					{content}
 				</React.Fragment>
 			);

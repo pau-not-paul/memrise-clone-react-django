@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import styles from './WriteWordFragment.module.css';
 
 class WriteWordFragment extends Component {
@@ -10,8 +11,8 @@ class WriteWordFragment extends Component {
 		this.input.focus();
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (nextProps.result === 'learning' && nextProps.result !== this.props.result) {
+	componentDidUpdate(prevProps, prevState) {
+		if (this.props.result === 'learning' && this.props.result !== prevProps.result) {
 			this.clearInput();
 		}
 	}
@@ -23,7 +24,7 @@ class WriteWordFragment extends Component {
 	};
 
 	onKeyDown = e => {
-		if (e.key === 'Enter') {
+		if (e.key === 'Enter' && this.props.result === 'learning') {
 			this.next();
 		}
 	};
@@ -40,47 +41,29 @@ class WriteWordFragment extends Component {
 	};
 
 	render() {
-		let input = (
-			<input
-				ref={input => {
-					this.input = input;
-				}}
-				value={this.state.inputValue}
-				onChange={e => this.inputChange(e)}
-				onKeyDown={e => this.onKeyDown(e)}
-				className={styles.Input}
-			/>
-		);
+		let inputClasses = styles.Input;
 
 		if (this.props.result === 'correct') {
-			input = (
-				<input
-					ref={input => {
-						this.input = input;
-					}}
-					readOnly
-					value={this.state.inputValue}
-					className={styles.Input + ' ' + styles.InputCorrect}
-				/>
-			);
+			inputClasses += ' ' + styles.InputCorrect;
 		} else if (this.props.result === 'wrong') {
-			input = (
-				<input
-					ref={input => {
-						this.input = input;
-					}}
-					readOnly
-					value={this.state.inputValue}
-					className={styles.Input + ' ' + styles.InputWrong}
-				/>
-			);
+			inputClasses += ' ' + styles.InputWrong;
 		}
 
 		return (
 			<div className={styles.Content}>
 				<div className={styles.Main}>
 					<div className={styles.Word}>{this.props.pair.description}</div>
-					{input}
+					{/* {input} */}
+					<input
+						ref={input => {
+							this.input = input;
+						}}
+						readOnly={this.props.result !== 'learning'}
+						value={this.state.inputValue}
+						onChange={this.inputChange}
+						onKeyDown={this.onKeyDown}
+						className={inputClasses}
+					/>
 				</div>
 				<div className={styles.RightColumn}>
 					<div onClick={this.next} className={styles.NextButton}>
@@ -94,3 +77,12 @@ class WriteWordFragment extends Component {
 }
 
 export default WriteWordFragment;
+
+WriteWordFragment.propTypes = {
+	result: PropTypes.string.isRequired,
+	pair: PropTypes.shape({
+		word: PropTypes.string,
+		description: PropTypes.string,
+	}).isRequired,
+	userWrote: PropTypes.func.isRequired,
+};

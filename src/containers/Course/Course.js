@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import styles from './Course.module.css';
 import Header from '../../components/Header/Header';
-import Spinner from '../../components/Spinner/Spinner';
 import QuitCourseModal from '../../components/QuitCourseModal/QuitCourseModal';
-import WordsBlock from '../../components/Course/WordsBlock/WordsBlock';
+import WordsTable from '../../components/Course/WordsTable/WordsTable';
 import CourseHead from '../../components/Course/CourseHead/CourseHead';
 import * as profileActions from '../../store/actions/profile';
 
@@ -20,30 +19,29 @@ class Course extends Component {
 	};
 
 	componentDidMount() {
-		this.props.updateProfile();
 		this.loadCourse();
 		this.checkIfAdded();
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (this.props.profile.courses !== nextProps.profile.courses) {
-			this.checkIfAdded(nextProps);
+	componentDidUpdate(prevProps, prevState) {
+		if (this.props.profile.courses !== prevProps.profile.courses) {
+			this.checkIfAdded();
 		}
-		if (this.state.course && this.props.profile.username !== nextProps.profile.username) {
-			this.checkIfOwner(nextProps, this.state.course);
+		if (this.state.course && this.props.profile.username !== prevProps.profile.username) {
+			this.checkIfOwner();
 		}
 	}
 
-	checkIfOwner = (props, course) => {
-		if (course.owner === props.profile.username) {
+	checkIfOwner = (course = this.state.course) => {
+		if (course.owner === this.props.profile.username) {
 			this.setState({ owner: true });
 		}
 	};
 
-	checkIfAdded = (props = this.props) => {
-		if (!props.profile.loading) {
+	checkIfAdded = () => {
+		if (!this.props.profile.loading) {
 			this.setState({ loading: false });
-			const courses = props.profile.courses;
+			const courses = this.props.profile.courses;
 			let added = false;
 			let wordsLearned = 0;
 
@@ -79,9 +77,8 @@ class Course extends Component {
 			} else {
 				course.words = words;
 			}
-			course.wordsLearned = 0;
 			course.totalWords = words.length;
-			this.checkIfOwner(this.props, course);
+			this.checkIfOwner(course);
 			this.setState({
 				course: course,
 			});
@@ -146,13 +143,13 @@ class Course extends Component {
 			return (
 				<React.Fragment>
 					<Header url={this.props.match.url} />
-					{this.state.modal ? (
+					{this.state.modal && (
 						<QuitCourseModal
 							closeModal={this.closeModal}
 							quitCourse={() => this.updateCourse('remove')}
 						/>
-					) : null}
-					<CourseHead course={course} />
+					)}
+					<CourseHead {...course} />
 					<div className={styles.SecondHeader}>
 						<div className={styles.Row}>
 							{this.state.added ? (
@@ -164,17 +161,17 @@ class Course extends Component {
 									Add to my courses
 								</div>
 							)}
-							{this.state.owner ? (
+							{this.state.owner && (
 								<div
 									onClick={() => this.props.history.push(this.state.courseId + '/edit')}
 									className={styles.EditBtn}
 								>
 									Edit course
 								</div>
-							) : null}
+							)}
 						</div>
 					</div>
-					{this.state.added ? (
+					{this.state.added && (
 						<div className={styles.ProgressDiv}>
 							<div className={styles.WordsLearned}>
 								{this.state.wordsLearned} / {course.totalWords} words learned
@@ -182,34 +179,20 @@ class Course extends Component {
 							<div className={styles.ProgressBar}>
 								<div style={progressWidth} className={styles.Progress} />
 							</div>
-							{progress === 100 ? (
-								<div className={styles.CourseCompleted}>Course completed!</div>
-							) : null}
+							{progress === 100 && <div className={styles.CourseCompleted}>Course completed!</div>}
 							<div onClick={this.learn} className={learnBtnClasses}>
 								Learn
 							</div>
 						</div>
-					) : null}
-					<WordsBlock course={this.state.course} />
+					)}
+					<WordsTable {...this.state.course} />
 				</React.Fragment>
 			);
 		} else {
 			return (
 				<React.Fragment>
 					<Header url={this.props.match.url} />
-					{this.state.modal ? (
-						<QuitCourseModal
-							closeModal={this.closeModal}
-							quitCourse={() => this.updateCourse('remove')}
-						/>
-					) : null}
-					<div className={styles.PageHead}>
-						<div className={styles.PageHeadRow}>
-							<div className={styles.SpinnerWrapper}>
-								<Spinner />
-							</div>
-						</div>
-					</div>
+					<CourseHead />
 				</React.Fragment>
 			);
 		}

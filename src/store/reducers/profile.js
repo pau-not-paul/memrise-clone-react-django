@@ -4,9 +4,9 @@ import { updateObject } from '../utility';
 const initialState = {
 	loading: true,
 	username: null,
-	level: 1,
-	points: 0,
-	wordsLearned: 0,
+	level: '1',
+	points: '0',
+	wordsLearned: '0',
 	courses: null,
 	progress: null,
 };
@@ -22,9 +22,9 @@ const profileLoaded = (state, action) => {
 		loading: false,
 		username: action.username,
 		courses: action.courses,
-		level: action.level,
-		points: action.points,
-		wordsLearned: action.wordsLearned,
+		level: String(action.level),
+		points: String(action.points),
+		wordsLearned: String(action.wordsLearned),
 		progress: action.progress,
 	});
 };

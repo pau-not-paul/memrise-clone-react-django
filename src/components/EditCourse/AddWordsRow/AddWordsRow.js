@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+
 import styles from './AddWordsRow.module.css';
 
 class AddWordsRow extends Component {
@@ -16,17 +18,13 @@ class AddWordsRow extends Component {
 		}
 	};
 
-	wordChange = (event, learning) => {
-		if (learning) {
-			this.setState({ word: event.target.value });
-		} else {
-			this.setState({ description: event.target.value });
-		}
+	inputChange = event => {
+		this.setState({ [event.target.name]: event.target.value });
 	};
 
-	onKeyDown = (event, firstInput) => {
+	onKeyDown = event => {
 		if (event.key === 'Enter') {
-			if (firstInput) {
+			if (event.target.name === 'word') {
 				if (this.state.word !== '') {
 					this.descriptionInput.focus();
 				}
@@ -55,9 +53,10 @@ class AddWordsRow extends Component {
 								ref={input => {
 									this.firstInput = input;
 								}}
+								name="word"
 								value={this.state.word}
 								onKeyDown={e => this.onKeyDown(e, true)}
-								onChange={event => this.wordChange(event, true)}
+								onChange={this.inputChange}
 								className={styles.Input}
 							/>
 						</div>
@@ -66,9 +65,10 @@ class AddWordsRow extends Component {
 								ref={input => {
 									this.descriptionInput = input;
 								}}
+								name="description"
 								value={this.state.description}
 								onKeyDown={e => this.onKeyDown(e, false)}
-								onChange={event => this.wordChange(event, false)}
+								onChange={this.inputChange}
 								className={styles.Input}
 							/>
 						</div>
@@ -81,3 +81,7 @@ class AddWordsRow extends Component {
 }
 
 export default AddWordsRow;
+
+AddWordsRow.propTypes = {
+	addNewWord: PropTypes.func.isRequired,
+};

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './CourseCard.module.css';
 import img from '../../../assets/images/course_image_small.jpg';
@@ -41,12 +42,12 @@ class CourseCard extends Component {
 
 			return (
 				<div className={styles.CourseCard}>
-					{this.state.modal ? (
+					{this.state.modal && (
 						<QuitCourseModal
 							closeModal={this.closeModal}
 							quitCourse={() => this.props.quitCourse(course.id)}
 						/>
-					) : null}
+					)}
 					<div className={styles.CardTop}>
 						<div className={styles.ImgWrapper}>
 							<img src={img} className={styles.Image} alt="" />
@@ -80,9 +81,7 @@ class CourseCard extends Component {
 							<div className={styles.ProgressBar}>
 								<div style={progressWidth} className={styles.Progress} />
 							</div>
-							{progress === 100 ? (
-								<div className={styles.CourseCompleted}>Course completed!</div>
-							) : null}
+							{progress === 100 && <div className={styles.CourseCompleted}>Course completed!</div>}
 						</div>
 					</div>
 					<div className={styles.CardBottom}>
@@ -106,3 +105,27 @@ class CourseCard extends Component {
 }
 
 export default CourseCard;
+
+const conditionalCheck = function(props, propName, componentName) {
+	if (!props.loading && !props[propName]) {
+		return new Error(
+			'Invalid prop `' +
+				propName +
+				'` supplied to' +
+				' `' +
+				componentName +
+				'`. Validation failed.',
+		);
+	}
+};
+
+CourseCard.propTypes = {
+	loading: PropTypes.bool,
+	course: conditionalCheck,
+	learn: conditionalCheck,
+	quitCourse: conditionalCheck,
+};
+
+CourseCard.defaultProps = {
+	loading: false,
+};

@@ -1,7 +1,7 @@
 .Profile {
 	border-radius: 5px;
-	box-shadow: rgba(0,0,0,0.08) 0 1px 2px;
-    border: 1px solid #e4e4e4;
+	box-shadow: rgba(0, 0, 0, 0.08) 0 1px 2px;
+	border: 1px solid #e4e4e4;
 }
 
 .ProfileHeader {
@@ -28,7 +28,7 @@
 }
 
 .ProfileImage {
-	box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.24);
+	box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.24);
 	border-radius: 50%;
 	z-index: 1;
 	content: url('../../../../assets/images/avatar-2.png');
@@ -44,7 +44,7 @@
 	text-align: center;
 	font-weight: bold;
 	font-size: 1.1em;
-	line-height: 40px;
+	min-height: 40px;
 }
 
 .Level {
@@ -52,6 +52,7 @@
 	width: 100%;
 	text-align: center;
 	font-size: 0.9em;
+	min-height: 1.2em;
 }
 
 .ProfileStats {
@@ -71,20 +72,20 @@
 .StatsSeparator {
 	width: 1px;
 	height: 35px;
-	background: rgba(0,0,0,0.15);
+	background: rgba(0, 0, 0, 0.15);
 	margin: 0 5px;
 }
 
 .StatsNumber {
 	font-weight: bold;
-    font-size: 18px;
-    color: #1fa3e8;
-    line-height: 1.11;
+	font-size: 18px;
+	color: #1fa3e8;
+	line-height: 1.11;
 }
 
 .StatsLabel {
 	margin-top: 2px;
 	font-size: 12px;
-    line-height: 1.67;
-    color: #3E3E3E;
+	line-height: 1.67;
+	color: #3e3e3e;
 }

@@ -21,15 +21,14 @@ class App extends Component {
 		this.props.onTryAutoSignup();
 	}
 
-	componentWillReceiveProps(nextProps) {
-		if (this.props.token !== nextProps.token) {
-			this.props.profileLoad(nextProps.token);
+	componentDidUpdate(prevProps, prevState) {
+		if (this.props.isAuthenticated && !prevProps.isAuthenticated) {
+			this.props.profileLoad(this.props.token);
 		}
 	}
 
 	render() {
 		const { isAuthenticated, loading } = this.props;
-
 		if (isAuthenticated) {
 			return (
 				<Switch>
@@ -80,5 +79,9 @@ App.propTypes = {
 	isAuthenticated: PropTypes.bool.isRequired,
 	loading: PropTypes.bool.isRequired,
 	onTryAutoSignup: PropTypes.func.isRequired,
-	token: PropTypes.string.isRequired,
+	token: PropTypes.string,
+};
+
+App.defaultProps = {
+	token: '',
 };
