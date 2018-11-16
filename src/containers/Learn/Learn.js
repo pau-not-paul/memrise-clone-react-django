@@ -10,6 +10,7 @@ import SessionComplete from '../../components/Learn/SessionComplete/SessionCompl
 import * as profileActions from '../../store/actions/profile';
 
 const GOAL_SCORE = 2;
+const TOTAL_TURNS = 10;
 
 class Learn extends Component {
 	state = {
@@ -17,7 +18,7 @@ class Learn extends Component {
 		course: null,
 		loading: true,
 		index: 0,
-		turns: 10,
+		turns: TOTAL_TURNS,
 		result: 'learning',
 		progress: null,
 		sessionWords: null,
@@ -33,7 +34,7 @@ class Learn extends Component {
 	}
 
 	componentDidUpdate(prevProps, prevState) {
-		if (!this.props.profile.loading && !prevProps.profile.loading) {
+		if (!this.props.profile.loading && prevProps.profile.loading) {
 			this.loadProgress();
 		}
 		if (!this.sessionCreated && this.state.progress && this.state.course) {
@@ -61,7 +62,6 @@ class Learn extends Component {
 			this.props.history.goBack();
 		} else {
 			const currentWord = sessionWords[0];
-
 			this.setState({
 				loading: false,
 				wordsLearned: wordsLearned,
@@ -238,7 +238,12 @@ class Learn extends Component {
 			}
 			return (
 				<React.Fragment>
-					<Header close={this.props.history.goBack} name={this.state.course.name} />
+					<Header
+						turns={this.state.turns}
+						totalTurns={TOTAL_TURNS}
+						close={this.props.history.goBack}
+						name={this.state.course.name}
+					/>
 					{content}
 				</React.Fragment>
 			);

@@ -1,4 +1,4 @@
-.Header{
+.Header {
 	background-color: #24b840;
 	position: fixed;
 	top: 0;
@@ -7,10 +7,11 @@
 	color: #fff;
 	padding: 0;
 	border: none;
-	z-index: 10;	
+	z-index: 10;
+	height: 62px;
 	min-height: 62px;
 	box-sizing: border-box;
-	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2);
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .HeaderRow {
@@ -23,48 +24,70 @@
 }
 
 .LearningIcon {
-    width: 40px;
-    height: 40px;
-    background-image: url('../../../assets/icons/plant-icon.png');
-    background-repeat: no-repeat;
-    background-position: 0% 100%;
-    background-size: 100% auto; 
+	width: 40px;
+	height: 40px;
+	background-image: url('../../../assets/icons/plant-icon.png');
+	background-repeat: no-repeat;
+	background-position: 0% 100%;
+	background-size: 100% auto;
 }
 
 .CenterColumn {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    font-size: 1.2em;
-    flex-grow: 1;
-    box-sizing: border-box;
-    padding: 20px;
-    height: 100%;
-    border-left: 1px solid #0e9427;
-    border-right: 1px solid #0e9427;
+	display: inline-block;
+	font-size: 1.2em;
+	flex-grow: 1;
+	box-sizing: border-box;
+	height: 100%;
+	border-left: 1px solid #0e9427;
+	border-right: 1px solid #0e9427;
+	position: relative;
+}
+
+.HeaderText {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+}
+
+.ProgressBar {
+	margin-top: 5px;
+	box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.06) inset;
+	background-color: rgba(0, 0, 0, 0.1);
+	height: 8px;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	display: block;
+	box-sizing: border-box;
+}
+
+.Progress {
+	height: 100%;
+	background-color: #ffda3e;
 }
 
 .LeftColumn {
-    width: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+	width: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
 .RightColumn {
-    width: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+	width: 50px;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
-
 .CloseButton {
-    width: 25px;
-    height: 25px;
-    background-image: url('../../../assets/icons/icon-session-quit.png');
-    background-repeat: no-repeat;
-    background-position: 0% 100%;
-    background-size: 100% auto; 
-    cursor: pointer;
+	width: 25px;
+	height: 25px;
+	background-image: url('../../../assets/icons/icon-session-quit.png');
+	background-repeat: no-repeat;
+	background-position: 0% 100%;
+	background-size: 100% auto;
+	cursor: pointer;
 }
