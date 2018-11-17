@@ -24,19 +24,8 @@ class Courses extends Component {
 
 		axios.get(url + 'courses-api/').then(res => {
 			for (let course of res.data) {
-				let justCreatedClass = '';
-				const courseId = this.props.match.params.courseId;
-
-				if (courseId === String(course.id)) {
-					justCreatedClass = styles.JustCreated;
-				}
-
 				coursesHTML.push(
-					<Link
-						key={course.id}
-						to={'/course/' + course.id}
-						className={styles.CourseCard + ' ' + justCreatedClass}
-					>
+					<Link key={course.id} to={'/course/' + course.id} className={styles.CourseCard}>
 						{course.name}
 					</Link>,
 				);
@@ -49,6 +38,13 @@ class Courses extends Component {
 	};
 
 	render() {
+		let coursesHTML = this.state.coursesHTML;
+		if (!coursesHTML) {
+			coursesHTML = [];
+			for (let i = 0; i < 8; i++) {
+				coursesHTML.push(<div key={i} className={styles.CourseCardPlaceHolder} />);
+			}
+		}
 		return (
 			<React.Fragment>
 				<Header url={this.props.match.url} />
@@ -62,8 +58,7 @@ class Courses extends Component {
 				</div>
 				<div className={styles.Content}>
 					<div className={styles.ContainerMain}>
-						{/*<LeftColumn/>*/}
-						<div className={styles.RightColumn}>{this.state.coursesHTML}</div>
+						<div className={styles.RightColumn}>{coursesHTML}</div>
 					</div>
 				</div>
 			</React.Fragment>

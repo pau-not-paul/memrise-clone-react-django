@@ -24,6 +24,7 @@ class Learn extends Component {
 		sessionWords: null,
 		wordsLearned: [],
 		currentWord: null,
+		courseFinished: false,
 	};
 
 	componentDidMount() {
@@ -203,8 +204,10 @@ class Learn extends Component {
 		} else {
 			const turns = this.state.turns - 1;
 			const sessionWords = this.state.sessionWords;
-			if (turns === 0 || sessionWords.length === 0) {
+			if (turns === 0) {
 				this.setState({ turns: 0 });
+			} else if (sessionWords.length === 0) {
+				this.setState({ courseFinished: true });
 			} else {
 				let idx = 0;
 				if (sessionWords.length > 1) {
@@ -226,15 +229,15 @@ class Learn extends Component {
 	render() {
 		if (this.state.course && !this.state.loading) {
 			const pair = this.state.currentWord;
-
 			let content = <NewWordFragment next={this.nextClick} {...pair} />;
-			if (pair.score > 0 || this.state.result === 'wrong') {
+			if (this.state.turns === 0 || this.state.courseFinished) {
+				content = (
+					<SessionComplete courseFinished={this.state.courseFinished} home={this.goToCourse} />
+				);
+			} else if (pair.score > 0 || this.state.result === 'wrong') {
 				content = (
 					<WriteWordFragment result={this.state.result} userWrote={this.userWrote} pair={pair} />
 				);
-			}
-			if (this.state.turns === 0) {
-				content = <SessionComplete home={this.goToCourse} />;
 			}
 			return (
 				<React.Fragment>
