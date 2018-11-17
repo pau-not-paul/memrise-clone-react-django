@@ -25,7 +25,7 @@ const CourseHead = props => (
 	</div>
 );
 
-export default CourseHead;
+export default React.memo(CourseHead);
 
 CourseHead.propTypes = {
 	name: PropTypes.string,

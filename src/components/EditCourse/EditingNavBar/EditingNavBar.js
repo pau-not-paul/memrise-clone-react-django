@@ -14,7 +14,7 @@ const EditingNavBar = props => (
 	</div>
 );
 
-export default EditingNavBar;
+export default React.memo(EditingNavBar);
 
 EditingNavBar.propTypes = {
 	goBack: PropTypes.func.isRequired,

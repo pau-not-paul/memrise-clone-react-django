@@ -80,7 +80,7 @@ class AddWordsRow extends Component {
 	}
 }
 
-export default AddWordsRow;
+export default React.memo(AddWordsRow);
 
 AddWordsRow.propTypes = {
 	addNewWord: PropTypes.func.isRequired,

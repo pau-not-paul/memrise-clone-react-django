@@ -76,7 +76,7 @@ class WriteWordFragment extends Component {
 	}
 }
 
-export default WriteWordFragment;
+export default React.memo(WriteWordFragment);
 
 WriteWordFragment.propTypes = {
 	result: PropTypes.string.isRequired,
