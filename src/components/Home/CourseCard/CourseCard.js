@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styles from './CourseCard.module.css';
 import img from '../../../assets/images/course_image_small.jpg';
-import QuitCourseModal from '../../QuitCourseModal/QuitCourseModal';
+const QuitCourseModal = React.lazy(() => import('../../QuitCourseModal/QuitCourseModal'));
 
 class CourseCard extends Component {
 	state = {
@@ -43,10 +43,12 @@ class CourseCard extends Component {
 			return (
 				<div className={styles.CourseCard}>
 					{this.state.modal && (
-						<QuitCourseModal
-							closeModal={this.closeModal}
-							quitCourse={() => this.props.quitCourse(course.id)}
-						/>
+						<Suspense fallback={null}>
+							<QuitCourseModal
+								closeModal={this.closeModal}
+								quitCourse={() => this.props.quitCourse(course.id)}
+							/>
+						</Suspense>
 					)}
 					<div className={styles.CardTop}>
 						<div className={styles.ImgWrapper}>

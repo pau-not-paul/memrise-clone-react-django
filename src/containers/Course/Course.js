@@ -3,10 +3,12 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import styles from './Course.module.css';
 import Header from '../../components/Header/Header';
-import QuitCourseModal from '../../components/QuitCourseModal/QuitCourseModal';
 import WordsTable from '../../components/Course/WordsTable/WordsTable';
 import CourseHead from '../../components/Course/CourseHead/CourseHead';
 import * as profileActions from '../../store/actions/profile';
+const QuitCourseModal = React.lazy(() =>
+	import('../../components/QuitCourseModal/QuitCourseModal'),
+);
 
 class Course extends Component {
 	state = {

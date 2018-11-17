@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { Route, Switch, withRouter, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -51,7 +51,7 @@ class App extends Component {
 			<Switch>
 				<Route path="/join" exact component={SignUp} />
 				<Route path="/login" exact component={Login} />
-				{loading ? null : <Redirect path="*" to="/login" />}
+				{!loading && <Redirect path="*" to="/login" />}
 			</Switch>
 		);
 	}

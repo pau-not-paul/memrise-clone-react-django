@@ -20,7 +20,7 @@ class EditCourse extends Component {
 	componentDidUpdate(prevProps, prevState) {
 		if (!this.checkIfOwnerDone && this.state.course && this.props.profile.username) {
 			this.checkIfOwnerDone = true;
-			this.checkIfOwner(this.state.props, this.state.course);
+			this.checkIfOwner(this.props, this.state.course);
 		}
 	}
 
