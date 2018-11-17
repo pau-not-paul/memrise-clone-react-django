@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Suspense } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import styles from './Course.module.css';
@@ -146,10 +146,12 @@ class Course extends Component {
 				<React.Fragment>
 					<Header url={this.props.match.url} />
 					{this.state.modal && (
-						<QuitCourseModal
-							closeModal={this.closeModal}
-							quitCourse={() => this.updateCourse('remove')}
-						/>
+						<Suspense fallback={null}>
+							<QuitCourseModal
+								closeModal={this.closeModal}
+								quitCourse={() => this.updateCourse('remove')}
+							/>
+						</Suspense>
 					)}
 					<CourseHead {...course} />
 					<div className={styles.SecondHeader}>
