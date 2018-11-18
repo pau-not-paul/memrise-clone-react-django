@@ -30,11 +30,8 @@
 .ProfileImage {
 	box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.24);
 	border-radius: 50%;
-	z-index: 1;
-	content: url('../../../../assets/images/avatar-2.png');
 	width: 104px;
 	height: 104px;
-	object-fit: cover;
 }
 
 .UserName {

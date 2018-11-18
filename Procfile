@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn djreact.wsgi --log-file -
+web: python manage.py collectstatic --noinput; gunicorn djreact.wsgi --log-file -

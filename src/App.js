@@ -9,6 +9,7 @@ import Logout from './containers/Logout/Logout';
 import SignUp from './containers/SignUp/SignUp';
 import * as authActions from './store/actions/auth';
 import * as profileActions from './store/actions/profile';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 class App extends Component {
 	state = {
@@ -50,19 +51,21 @@ class App extends Component {
 		if (isAuthenticated) {
 			const { Courses, Learn, Course, CreateCourse, EditCourse, NotFound } = this.state;
 			return (
-				<Switch>
-					<Route path="/logout" exact component={Logout} />
-					<Route path="/course/create" exact component={CreateCourse} />
-					<Route path="/course/:courseId/edit" exact component={EditCourse} />
-					<Route path="/course/:courseId" exact component={Course} />
-					<Route path="/courses" exact component={Courses} />
-					<Route path="/learn/:courseId" exact component={Learn} />
-					<Route path="/home" exact component={Home} />
-					<Redirect path="/" exact to="/home" />
-					<Redirect path="/join" exact to="/home" />
-					<Redirect path="/login" exact to="/home" />
-					<Route path="*" component={NotFound} />
-				</Switch>
+				<ErrorBoundary>
+					<Switch>
+						<Route path="/logout" exact component={Logout} />
+						<Route path="/course/create" exact component={CreateCourse} />
+						<Route path="/course/:courseId/edit" exact component={EditCourse} />
+						<Route path="/course/:courseId" exact component={Course} />
+						<Route path="/courses" exact component={Courses} />
+						<Route path="/learn/:courseId" exact component={Learn} />
+						<Route path="/home" exact component={Home} />
+						<Redirect path="/" exact to="/home" />
+						<Redirect path="/join" exact to="/home" />
+						<Redirect path="/login" exact to="/home" />
+						<Route path="*" component={NotFound} />
+					</Switch>
+				</ErrorBoundary>
 			);
 		}
 		return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './Profile.module.css';
+import img from '../../../../assets/images/avatar-2.png';
 
 const Profile = props => (
 	<div className={styles.Profile}>
@@ -8,7 +9,7 @@ const Profile = props => (
 			<div className={styles.UserName}>{props.username}</div>
 			<div className={styles.Level}>LEVEL {props.level}</div>
 			<div className={styles.ImageWrapper}>
-				<img className={styles.ProfileImage} alt="" />
+				<img src={img} className={styles.ProfileImage} alt="" />
 			</div>
 		</div>
 		<div className={styles.ProfileStats}>
