@@ -4,4 +4,4 @@ Memrise clone built with ReactJS (& Redux) and Django (REST framework):
 - Add and remove user courses.
 - Learn new words.
 
-Hosted on Heroku (using Heroku PostgreSQL): https://memclone-react-django.herokuapp.com
+Hosted on Heroku (using Heroku PostgreSQL).
